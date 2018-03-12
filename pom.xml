@@ -16,7 +16,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>main.java.Main</mainClass>
+                        <mainClass>main.java.LaunchToDiscord</mainClass>
                     </manifest>
                 </archive>
             </configuration>
@@ -36,7 +36,7 @@
                 <archive>
                     <manifest>
                         <mainClass>
-                            main.java.Main
+                            main.java.LaunchToDiscord
                         </mainClass>
                     </manifest>
                 </archive>

@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import sun.plugin2.message.Message;
 
-public class Command extends ListenerAdapter{
+public class Events extends ListenerAdapter{
 
     public void onMessageReceived(MessageReceivedEvent event){
 
