@@ -8,6 +8,11 @@ import javax.security.auth.login.LoginException;
 
 public class AccountCreator {
 
+    private static JDA botAccount;
+    private JDA clientAccount;
+
+    //creates the bot account using the Admin Bot token that was created during the setup. Throws exception if cannot connect.
+    //buildBlocking() ensures that the bot is connected before continuing on with the code.
     public JDA createBotAccount(){
         JDA botAccount=null;
         try{
@@ -23,7 +28,6 @@ public class AccountCreator {
     }
 
     public JDA createClientAccount(){
-        JDA clientAccount = null;
         try{
             clientAccount = new JDABuilder(AccountType.CLIENT).setToken("MzU1ODMzNjQzNDQyMTEwNDY0.DYb0mw.bVxAuYp1L-6PRjQS5JIvIE9Kewk").buildBlocking();
         } catch (LoginException | InterruptedException e) {
@@ -38,5 +42,13 @@ public class AccountCreator {
 
     public User getClientID(JDA clientAccount) {
         return clientAccount.getUserById("355833643442110464");
+    }
+
+    public static JDA getBotAccount(){
+        return botAccount;
+    }
+
+    public JDA getClientAccount(){
+        return this.clientAccount;
     }
 }

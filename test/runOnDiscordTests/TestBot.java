@@ -14,7 +14,6 @@ import javax.security.auth.login.LoginException;
 public class TestBot {
 
     //creates the accounts and tests their connections, if they are bots, and if they have access to the Test Channel ("general").
-    //TODO: create test for sending client message to Discord and test that the listener works by retrieving the Admin Bot message
 
     private AccountCreator accountCreator = new AccountCreator();
     private JDA botAccount = accountCreator.createBotAccount();
@@ -26,6 +25,7 @@ public class TestBot {
     private String CS222TextChannelID = "415502671483633666";
     TextChannel CS222TextChannel = clientAccount.getTextChannelById(CS222TextChannelID);
 
+    //tests that there is a connection between Discord and the users (bot and client)
     @Test
     public void testConnection(){
         String botConnectedToDiscord = botAccount.getStatus().toString();
@@ -33,6 +33,7 @@ public class TestBot {
         Assert.assertEquals(clientConnectedToDiscord, botConnectedToDiscord, "CONNECTED");  //test both account connections to Discord
     }
 
+    //tests that the users are in the correct TextChannel ("general")
     @Test
     public void testUsersInTextChannel(){
         String botInTextChannel = botAccount.getTextChannelById(CS222TextChannelID).getName();

@@ -7,11 +7,17 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
+//sends a client-made message to Discord for testing
 public class SendMessages {
+    private Message msg = null;
     public void sendHelpMessage(JDA clientAccount){
-        Message correctMessage = new MessageBuilder().append("!help").build();
+        msg = new MessageBuilder().append("!help").build();
         TextChannel CS222TextChannel = clientAccount.getTextChannelById("415502671483633666");
-        MessageAction sendCorrectMessage = CS222TextChannel.sendMessage(correctMessage);
+        MessageAction sendCorrectMessage = CS222TextChannel.sendMessage(msg);
         sendCorrectMessage.queue();
+    }
+
+    public Message getMessage(){
+        return this.msg;
     }
 }
