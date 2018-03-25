@@ -4,6 +4,8 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.User;
+import performActions.ActionListener;
+
 import javax.security.auth.login.LoginException;
 
 public class AccountCreator {
@@ -23,7 +25,7 @@ public class AccountCreator {
         assert botAccount != null;
         botAccount.setAutoReconnect(true);
         botAccount.addEventListener(new LaunchToDiscord());
-        botAccount.addEventListener(new Events());
+        botAccount.addEventListener(new ActionListener());
         return botAccount;
     }
 
