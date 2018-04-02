@@ -15,10 +15,10 @@ Features:
 *Ban and unban users from the server
 
 
-Future Additions:
+Future Additions: With our future additions, we would like to implement some simple games such as hangman, a word guessing game, a magic 8 ball to figure out if Stacey will go to the dance with us or not, and possibly a riveting game of tic-tac-toe.
 
 
 User Stories:
 
 
-Acceptance Test:
+Acceptance Test: We chose a plethora of different Discord administrators from PC, Mac, Linux, to acceptance test our bot, all of them have said that they enjoy the bot so far and would like very much to see the finished project, they however have adressed the inside jokes with a few of our responses and would possibly like to see it more professional.
