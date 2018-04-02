@@ -2,7 +2,9 @@ package commands;
 
 import net.dv8tion.jda.core.entities.Message;
 
-public class NoResponseCommand implements Command {
+public class CommandRespondtoTeams implements commands.Command {
+    private Message msg;
+
     @Override
     public void doAction() {
 
@@ -10,7 +12,7 @@ public class NoResponseCommand implements Command {
 
     @Override
     public void setMessage(Message msg) {
-
+        this.msg = msg;
     }
 
     @Override

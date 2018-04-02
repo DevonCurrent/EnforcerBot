@@ -1,15 +1,14 @@
 package performActions;
 
 
-import commands.Command;
-import commands.CommandRespondToPing;
-import commands.NoResponseCommand;
+import commands.*;
+import net.dv8tion.jda.core.entities.Message;
 
 import java.util.HashMap;
 
-//TODO: add commands for "!kick", "!invite", "!ban" and add Command classes for these respective command names
-
 public class CommandCreator {
+
+    String commandName = null;
 
     //creates HashMap that stores all command names with the Command objects
     private HashMap<String, Command> commands = new HashMap<>();
@@ -17,18 +16,22 @@ public class CommandCreator {
     CommandCreator() {
         commands.put("!ping", new CommandRespondToPing());
         commands.put("null", new NoResponseCommand());
+        commands.put("!kick", new CommandRespondToKick());
+        commands.put("!ban", new CommandRespondToBan());
+        commands.put("!unban", new CommandRespondToUnban());
+        commands.put("!teams", new CommandRespondtoTeams());
     }
 
     //returns a command that is created by calling the name of the command from the HashMap
-    public Command create(ParsedMessage parsedMessage) {
-        Command command = commands.get(parsedMessage.getText());
+    public Command create(Message msg) {
+        Command command = commands.get(commandName);
 
         //if the command does not exist, throw an exception
         if(command == null) {
             throw new RuntimeException();
         }
 
-        command.setParsedMessage(parsedMessage);
+        command.setMessage(msg);
         return command;
     }
 
@@ -38,4 +41,9 @@ public class CommandCreator {
         command.doAction();
         return command;
     }
+
+    public void setCommandName(String[] commandName){
+        this.commandName = commandName[0];
+    }
+
 }
