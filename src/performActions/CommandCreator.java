@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class CommandCreator {
 
-    String commandName = null;
+    private String commandName = null;
 
     //creates HashMap that stores all command names with the Command objects
     private HashMap<String, Command> commands = new HashMap<>();
@@ -19,7 +19,7 @@ public class CommandCreator {
         commands.put("!kick", new CommandRespondToKick());
         commands.put("!ban", new CommandRespondToBan());
         commands.put("!unban", new CommandRespondToUnban());
-        commands.put("!teams", new CommandRespondtoTeams());
+        commands.put("!channels", new CommandRespondtoChannels());
     }
 
     //returns a command that is created by calling the name of the command from the HashMap
