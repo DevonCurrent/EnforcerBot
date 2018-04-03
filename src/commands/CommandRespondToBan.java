@@ -8,7 +8,6 @@ import java.util.List;
 public class CommandRespondToBan implements commands.Command {
 
     Message msg = null;
-    TextChannel textChannel = msg.getTextChannel();
 
     @Override
     public void doAction() {
@@ -26,6 +25,7 @@ public class CommandRespondToBan implements commands.Command {
 
             List<User> mentionedUsers = msg.getMentionedUsers();
             for (User user : mentionedUsers) {
+                System.out.println(user);
                 Member member = guild.getMember(user);
                 if (!selfMember.canInteract(member)) {
                     msg.getTextChannel().sendMessage(" Cannot ban member: " + member.getEffectiveName()
@@ -42,15 +42,14 @@ public class CommandRespondToBan implements commands.Command {
         }
     }
 
-
     private void error(Member member, Throwable error) {
         if (error instanceof PermissionException) {
             PermissionException pe = (PermissionException) error;
             Permission missingPermission = pe.getPermission();
-            textChannel.sendMessage(" I do not have the permission to ban " + member.getEffectiveName()
+            msg.getTextChannel().sendMessage(" I do not have the permission to ban " + member.getEffectiveName()
                     + "\nRequired permission: `" + missingPermission.getName() + "`").queue();
         } else {
-            textChannel.sendMessage(" Unknown error while banning " + member.getEffectiveName()
+            msg.getTextChannel().sendMessage(" Unknown error while banning " + member.getEffectiveName()
                     + ": <" + error.getClass().getSimpleName() + ">: " + error.getMessage()).queue();
         }
     }
