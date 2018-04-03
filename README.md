@@ -8,7 +8,7 @@ Admin Bot is created in Java with the [JDA library](https://github.com/DV8FromTh
 - Requesting help if needed for commands
 - Kicking and banning members from a server
 - Unbanning members from a server
-- Separate the server into two teams in two different voice channels, for quick gameplay setup
+- Create x number of voice channels
 
 ### Future Features
 - Private greeting messages
@@ -21,15 +21,15 @@ Admin Bot is created in Java with the [JDA library](https://github.com/DV8FromTh
 !help
 !ban [@user]
 !kick [@user]
-!unban user
-!teams
+!unban [user]
+!channels [number]
 ```
 ### Completed User Stories
 - As a user, I want to ask for help if I do not know how functions on the bot work.
 - As an admin, I want to be able to kick users that I want removed from the server, but are not placed on a ban list.
 - As an admin, I want to ban users that I want removed from the server and placed on a ban list so they cannot rejoin.
 - As an admin, I want to unban users that were previously banned and placed on the ban list.
-- As an admin, I want to create two voice channels and move half of the online members to one channel. And the other half to the other channel.
+- As an admin, I want to create x number of voice channels so that I can quickly create more than one channel.
 
 ### Iteration 3 User Stories
 - As an admin, I want to have the bot send private message to new members that join the server, to introduce them to the server.
@@ -45,5 +45,9 @@ Testing was performed on online users on a Discord server. Admin users tested th
 - Admin Bot is a poor name for the bot, and there is no avatar picture to go with it.
 
 ###### Iteration 2:
+Testing was performed on online users and friends that have Discord servers. All users were of the target audience (administrators of Discord servers). The feedback was generally positive, as well as contained the following feedback:
+- The bot should take care of swearing in Discord chat and be capable of monitoring the chat.
+- The bot should have a unique, fun name and avatar.
+- The bot should include games to be able to play with other users.
 
 
