@@ -20,6 +20,7 @@ public class CommandCreator {
         commands.put("!ban", new CommandRespondToBan());
         commands.put("!unban", new CommandRespondToUnban());
         commands.put("!channels", new CommandRespondtoChannels());
+        commands.put("!help", new CommandRespondToHelp());
     }
 
     //returns a command that is created by calling the name of the command from the HashMap
