@@ -11,11 +11,12 @@ public class CommandParser {
         String msgString = msg.getContentRaw();
 
         if (msgString.startsWith("!")){
-            String msgText = msg.getContentRaw();
-            TextChannel textChannel = msg.getTextChannel();
-            ParsedMessage parsedMessage = new ParsedMessage(msgText, textChannel);
+            String requestedMessage = msg.getContentRaw();
+            String[] separatedWords = requestedMessage.split(" ");
+
             CommandCreator commandCreator = new CommandCreator();
-            return commandCreator.create(parsedMessage);
+            commandCreator.setCommandName(separatedWords);
+            return commandCreator.create(msg);
         }
 
         //if there is no regex ('!'), return NoResponseCommand

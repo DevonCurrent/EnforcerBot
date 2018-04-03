@@ -1,7 +1,6 @@
 package commands;
 
 import net.dv8tion.jda.core.entities.Message;
-import performActions.ParsedMessage;
 
 public class NoResponseCommand implements Command {
     @Override
@@ -10,7 +9,7 @@ public class NoResponseCommand implements Command {
     }
 
     @Override
-    public void setParsedMessage(ParsedMessage parsedMessage) {
+    public void setMessage(Message msg) {
 
     }
 
