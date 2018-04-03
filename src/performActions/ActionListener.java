@@ -2,6 +2,7 @@ package performActions;
 
 import commands.Command;
 import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -23,7 +24,8 @@ public class ActionListener extends ListenerAdapter{
                 actionCommand.doAction();
             }
             catch(RuntimeException e){
-                event.getTextChannel().sendMessage("That is an invalid request. If you need help knowing my functions, type '!help'").queue();
+                TextChannel textChannel = event.getTextChannel();
+                textChannel.sendMessage("That is an invalid request. If you need help knowing my functions, type '!help'").queue();
             }
         }
     }
