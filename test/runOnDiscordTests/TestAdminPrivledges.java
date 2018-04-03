@@ -14,16 +14,17 @@ public class TestAdminPrivledges {
     private JDA clientAccount = accountCreator.createClientAccount();
 
     //Tests for all four main Admin functionalities
-    @Test
     public void testKickPrivledge(){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.sendMessageToDiscord(clientAccount, "!kick");
-        String testMsg = sendMessage.getMessage().getContentRaw();
-        //if (clientAccount.isAdmin){
-//                Assert.assertEquals(testMsg, "!kick");
-//                return;
-//            }
-        //  else return false;
+
+        Member member = guild.getMemberById("428960077794246656");
+        Assert.assertEquals(member, true);
+
+        SendMessage sentMessage = new SendMessage();
+        sentMessage.sendMessageToDiscord(clientAccount, "!kick Manyemjyeb#9108");
+
+        Assert.assertEquals(member, null);
+
+        
     }
 
     @Test
@@ -33,11 +34,6 @@ public class TestAdminPrivledges {
         String banMsg = sendMessage.getMessage().getContentRaw();
     }
 
-    @Test
-    public void testUnbanPrivledge(){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.sendMessageToDiscord(clientAccount, "!unban");
-        String unbanMsg = sendMessage.getMessage().getContentRaw();
-    }
+    
 
 }
