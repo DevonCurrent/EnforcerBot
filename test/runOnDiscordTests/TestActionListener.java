@@ -65,4 +65,16 @@ public class TestActionListener {
     public void testDoNothingCommand(){
 
     }
+    @Test
+    public void testTicTacToe(){
+
+    }
+
+    @Test
+    public void testRNG(){
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.sendMessageToDiscord(clientAccount, "!rng 10");
+        String rngMessage = sendMessage.getMessage().getContentRaw();
+        Assert.assertEquals(rngMessage, "!rng 10");
+    }
 }
