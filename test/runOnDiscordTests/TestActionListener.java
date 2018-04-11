@@ -14,17 +14,18 @@ import testResources.SendMessage;
 //TODO: create new class testAdminPrivilages that tests the invite, kick, and ban Commands
 
 public class TestActionListener {
-
     private AccountCreator accountCreator = new AccountCreator();
     JDA botAccount = accountCreator.createBotAccount();
     private JDA clientAccount = accountCreator.createClientAccount();
+    private SendMessage sendMessage = new SendMessage();
+    private Message getSendMessage = sendMessage.getMessage();
+    private String rawContent = getSendMessage.getContentRaw();
 
     //Test can build a "!test" message and send it to Discord, to test other features.
     @Test
     public void testSendMessages(){
-        SendMessage sendMessages = new SendMessage();
-        sendMessages.sendMessageToDiscord(clientAccount, "!test");
-        String helpMsg = sendMessages.getMessage().getContentRaw();
+        sendMessage.sendMessageToDiscord(clientAccount, "!test");
+        String helpMsg = rawContent;
         Assert.assertEquals(helpMsg, "!test");
     }
 
@@ -32,7 +33,6 @@ public class TestActionListener {
     //Sends "!ping" message, then tests that the bot responds with "pong"
     @Test
     public void testPingCommand(){
-        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!ping");
         Command ac = CommandParser.parse(sendMessage.getMessage());
         ac.doAction();
@@ -45,7 +45,6 @@ public class TestActionListener {
     //Send "!invalid" message, which has a wrong command. Tests that bot will throw an exception
     @Before
     public void sendInvalidCommand(){
-        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!Invalid");
     }
 
@@ -58,7 +57,6 @@ public class TestActionListener {
     //Sends "This is not a command." The bot replies to this message with DoNotRespondCommand
     @Before
     public void sendMessageNotCommand(){
-        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "This is not a command.");
     }
     @Test
@@ -72,9 +70,10 @@ public class TestActionListener {
 
     @Test
     public void testRNG(){
-        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!rng 10");
-        String rngMessage = sendMessage.getMessage().getContentRaw();
+        String rngMessage = rawContent;
         Assert.assertEquals(rngMessage, "!rng 10");
+        double random = Math.floor(Math.random() * 10) +1;
+        sendMessage.sendMessageToDiscord(clientAccount, "The random number generator generates " + random + ".");
     }
 }
