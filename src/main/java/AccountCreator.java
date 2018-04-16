@@ -11,7 +11,7 @@ import javax.security.auth.login.LoginException;
 public class AccountCreator {
 
     private static JDA botAccount;
-    private JDA clientAccount;
+    private static JDA clientAccount;
 
     //creates the bot account using the Admin Bot token that was created during the setup. Throws exception if cannot connect.
     //buildBlocking() ensures that the bot is connected before continuing on with the code.
@@ -50,7 +50,7 @@ public class AccountCreator {
         return botAccount;
     }
 
-    public JDA getClientAccount(){
-        return this.clientAccount;
+    public static JDA getClientAccount(){
+        return clientAccount;
     }
 }

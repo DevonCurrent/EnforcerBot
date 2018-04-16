@@ -8,14 +8,14 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
 import org.junit.Assert;
 import org.junit.Test;
-import testResources.SendMessage;
+import testResources.SendClientMessage;
 
 import java.util.concurrent.TimeUnit;
 
 public class TestAdminPrivileges {
 
     private AccountCreator accountCreator = new AccountCreator();
-    JDA botAccount = accountCreator.createBotAccount();
+    private JDA botAccount = accountCreator.createBotAccount();
     private JDA clientAccount = accountCreator.createClientAccount();
 
     //Tests for all four main Admin functionalities
@@ -30,7 +30,7 @@ public class TestAdminPrivileges {
 
         String memberToKickAsMention = memberToKick.getAsMention();
 
-        SendMessage sentMessage = new SendMessage();
+        SendClientMessage sentMessage = new SendClientMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!kick " + memberToKickAsMention);
 
         TimeUnit.SECONDS.sleep(3);
@@ -39,30 +39,4 @@ public class TestAdminPrivileges {
         Assert.assertEquals(isMember, false);
 
     }
-    
-    //TODO: have the test class append to banned list and create assert argument inorder to check it is in the banned list. needs fixing.
-    @Test
-        List<Boolean> bannedMembers = null;
-        Guild guild = botAccount.getGuildById("415502671483633664");
-        Member memberToBan = guild.getMemberById("428266347101945887");
-        User userToBan = guild.getJDA().getUserById("428266347101945887");
-        boolean isMember = guild.isMember(userToBan);
-
-        Assert.assertEquals(isMember, true);
-
-        String memberToKickAsMention = memberToBan.getAsMention();
-
-        SendMessage sentMessage = new SendMessage();
-        sentMessage.sendMessageToDiscord(clientAccount, "!ban " + memberToKickAsMention);
-
-        TimeUnit.SECONDS.sleep(3);
-
-        bannedMembers = Collections.singletonList(bannedMembers.add(isMember));
-        System.out.println(bannedMembers);
-        isMember = guild.isMember(userToBan);
-        Assert.assertEquals(isMember, false);
-    }
-
-
-
 }
