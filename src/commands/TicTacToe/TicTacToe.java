@@ -53,7 +53,7 @@ public class TicTacToe {
             e.getChannel().sendMessage(embedstatus.build()).queue();
             }
         game.clearBoard();
-        AIBot.getGuild(e.getGuild()).resetTicTacToe();
+        AdminBot.getGuild(e.getGuild()).resetTicTacToe();
     }
 
     public void sendInput(String[] in, MessageReceivedEvent event){	//Set the input called by TicTacToeCommand{
@@ -102,19 +102,19 @@ public class TicTacToe {
             if(makeLine().equals("X"))	{
                 e.getChannel().sendMessage("\n" + Emoji.NO + "Player " + starter.getAsMention() + " (X) Wins!").queue();
                 game.clearBoard();
-                AIBot.getGuild(e.getGuild()).resetTicTacToe();
+                AdminBot.getGuild(e.getGuild()).resetTicTacToe();
             }
 
             else if(makeLine().equals("O")) {
                 e.getChannel().sendMessage("\n" + Emoji.YES + "Player " + opponent.getAsMention() +	 " Wins!").queue();
                 game.clearBoard();
-                AIBot.getGuild(e.getGuild()).resetTicTacToe();
+                AdminBot.getGuild(e.getGuild()).resetTicTacToe();
             }
 
             else if(catGame()) {
                 e.getChannel().sendMessage("Cat game, no winner.").queue();
                 game.clearBoard();
-                AIBot.getGuild(e.getGuild()).resetTicTacToe();
+                AdminBot.getGuild(e.getGuild()).resetTicTacToe();
             }
 
             else
