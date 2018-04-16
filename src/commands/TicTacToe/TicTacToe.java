@@ -1,71 +1,62 @@
-package main.java;
+package commands.TicTacToe;
 
-    /*
-     * We may need to make a few changes, Devon.
-     */
+    // We may need to make a few changes
 
-    // Needs a bit of work, maybe devon can implement emojis in the main?
-
-import constants.Emoji;
 import java.awt.Color;
 import java.util.List;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-    public class TicTacToe implements Game {
-        private Board game = new Board(3, 3);
-        private static MessageReceivedEvent e;
-        private static User starter;
-        private static User opponent;
-        private static String id;
-        private static int row, column;
-        private static User turn;
+public class TicTacToe {
+    private Board game = new Board(3, 3);
+    private static MessageReceivedEvent e;
+    private static User starter;
+    private static User opponent;
+    private static String id;
+    private static int row, column;
+    private static User turn;
 
     public TicTacToe(MessageReceivedEvent event) {
             e = event;
             startGame();
         }
 
-    @Override
-    public void startGame() // Keep the game progressing, with the power of Jawad{
+    public void startGame() { // Keep the game progressing
         // Set Players
         starter = e.getAuthor();
         List<User> mentionedUsers = e.getMessage().getMentionedUsers();
 
         try {
             opponent = mentionedUsers.get(0);
-            }
-            catch (ArrayIndexOutOfBoundsException aioobe) {
-                e.getChannel().sendMessage(Emoji.ERROR + " Please mention a person the start the game.").queue();
-            }
+        } catch (ArrayIndexOutOfBoundsException aioobe) {
+            e.getChannel().sendMessage(Emoji.ERROR + " Please mention a person the start the game.").queue();
+        }
 
         EmbedBuilder embedstatus = new EmbedBuilder().setColor(Color.green).addField(Emoji.GAME + " Tic Tac Toe: Game Mode ON!", "Starter: " + starter.getAsMention() + "\nOpponent: " + opponent.getAsMention(), true);
         e.getChannel().sendMessage(embedstatus.build()).queue();
         turn = starter;
         StringBuilder origBoard = new StringBuilder();
 
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                origBoard.append(getEmojiPos(i,j));
-                }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                origBoard.append(getEmojiPos(i, j));
+            }
             origBoard.append("\n");
             e.getChannel().sendMessage(origBoard.toString()).queue();
         }
+    }
 
-    @Override
-    public void endGame() //Stop the game{
+    public void endGame(){ //Stop the game{
         if(e.getAuthor() == starter || e.getAuthor() == opponent){
-            EmbedBuilder embedstatus = new EmbedBuilder().setColor(Color.green).setTitle(Emoji.GAME + " Tic Tac Toe: Game Mode OFF!", null).setFooter(e.getAuthor().getName() + " ended the game.", null);
+            new EmbedBuilder().setColor(Color.green).setTitle(Emoji.GAME + " Tic Tac Toe: Game Mode OFF!", null).setFooter(e.getAuthor().getName() + " ended the game.", null);
             e.getChannel().sendMessage(embedstatus.build()).queue();
             }
         game.clearBoard();
         AIBot.getGuild(e.getGuild()).resetTicTacToe();
-        }
+    }
 
-        @Override
-    public void sendInput(String[] in, MessageReceivedEvent event)	//Set the input called by TicTacToeCommand{
+    public void sendInput(String[] in, MessageReceivedEvent event){	//Set the input called by TicTacToeCommand{
         try{
             switch (in[0]) {
                 case "1" : row = 0; column = 0; break;
@@ -78,7 +69,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
                 case "8" : row = 2; column = 1; break;
                 case "9" : row = 2; column = 2; break;
                 default: throw new StringIndexOutOfBoundsException();
-                }
+            }
 
             //Assign ID (Piece O/X name)
             if(event.getAuthor() == opponent)
@@ -91,45 +82,45 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
                 if(event.getAuthor() != turn) {
                     e.getChannel().sendMessage(Emoji.ERROR + " It's not your turn yet!").queue();
                     return;
-                    }
                 }
-            else{
+            }
+
+            else
                 e.getChannel().sendMessage(Emoji.ERROR+" Do not interfere the game!").queue();
-                }
+
 
             if(!game.isOccupied(row, column)) {
                 game.addPiece(new Piece(id), row, column);
                 game.drawBoard();
-                }
+            }
             else {
                 e.getChannel().sendMessage(Emoji.ERROR + " The place is occupied. Use your eyes!").queue();
                 return;
-                }
+            }
 
             //Check for winner
             if(makeLine().equals("X"))	{
                 e.getChannel().sendMessage("\n" + Emoji.NO + "Player " + starter.getAsMention() + " (X) Wins!").queue();
                 game.clearBoard();
                 AIBot.getGuild(e.getGuild()).resetTicTacToe();
-                }
+            }
 
             else if(makeLine().equals("O")) {
                 e.getChannel().sendMessage("\n" + Emoji.YES + "Player " + opponent.getAsMention() +	 " Wins!").queue();
                 game.clearBoard();
                 AIBot.getGuild(e.getGuild()).resetTicTacToe();
-                }
+            }
 
             else if(catGame()) {
                 e.getChannel().sendMessage("Cat game, no winner.").queue();
                 game.clearBoard();
                 AIBot.getGuild(e.getGuild()).resetTicTacToe();
-                }
-
-            else {
-                switchTurn();
-                }
-
             }
+
+            else
+                switchTurn();
+
+        }
 
             catch(StringIndexOutOfBoundsException | NumberFormatException es) {
                 e.getChannel().sendMessage(Emoji.ERROR + " The 'Numbers' you enter is not valid.").queue();
@@ -148,7 +139,8 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
         }
 
     //TicTacToe Methods
-    private String makeLine() //Check for a line{
+    //TODO: should use a switch
+    private String makeLine(){ //Check for a line{
         Piece[][] board = game.getBoard();
         if (board[0][0].equals(board[0][1]) && board[0][1].equals(board[0][2]))
             return board[0][0].getID();
@@ -203,17 +195,18 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
                     emoji = Emoji.NO;
                 if (game.getBoard()[r][c].getID().equals("O"))
                     emoji = Emoji.YES;
-            }
-            return emoji;
         }
+            return emoji;
+    }
 
-    private boolean catGame() //Check for cat GAME{
+    private boolean catGame(){ //Check for cat GAME{
         Piece[][] end = game.getBoard();
         for(int i = 0; i < end.length; i ++) {
             for(int j = 0; j < end[0].length; j++)	{
                 if(!game.isOccupied(i,j))
                     return false;
-                }
             }
-        return true;
         }
+        return true;
+    }
+}

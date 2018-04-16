@@ -1,4 +1,4 @@
-package main.java;
+package commands.TicTacToe;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import java.awt.*;
@@ -21,9 +21,9 @@ public class Board{
             for (int j=0; j<cols; j++) {
                 p = new Piece();
                 addPiece(p, i, j);
-                }
             }
         }
+    }
 
     void drawBoard() {
         EmbedBuilder embedgame = new EmbedBuilder().setColor(Color.green).setTitle(Emoji.GAME + " Current Board (Round " + round + ")\n", null).setFooter(turn.getName() + " finished his/her turn.", null);
@@ -34,11 +34,11 @@ public class Board{
         for (int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++) {
                 line.append(getEmojiPos(i, j)).append(" ");
-                }
-                line.append("\n");
             }
-            e.getChannel().sendMessage(line.toString()).queue();
+                line.append("\n");
         }
+            e.getChannel().sendMessage(line.toString()).queue();
+    }
 
     void addPiece(Piece x, int r, int c) {
         board[r][c] = x;
@@ -52,7 +52,7 @@ public class Board{
         Piece p = board[r][c];
         String q = p.getID();
         return !q.equals("	");
-        }
+    }
 
     void clearBoard() {
         Piece p;
@@ -60,7 +60,7 @@ public class Board{
             for (int j=0; j<cols; j++) {
                 p = new Piece();
                 addPiece(p, i, j);
-                }
             }
         }
     }
+}
