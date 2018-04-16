@@ -5,6 +5,7 @@ package commands.TicTacToe;
 import java.awt.Color;
 import java.util.List;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -30,26 +31,21 @@ public class TicTacToe {
         try {
             opponent = mentionedUsers.get(0);
         } catch (ArrayIndexOutOfBoundsException aioobe) {
-            e.getChannel().sendMessage(Emoji.ERROR + " Please mention a person the start the game.").queue();
+            e.getChannel().sendMessage(" Please mention a person the start the game.").queue();
         }
 
-        EmbedBuilder embedstatus = new EmbedBuilder().setColor(Color.green).addField(Emoji.GAME + " Tic Tac Toe: Game Mode ON!", "Starter: " + starter.getAsMention() + "\nOpponent: " + opponent.getAsMention(), true);
+        EmbedBuilder embedstatus = new EmbedBuilder().setColor(Color.green).addField(" Tic Tac Toe: Game Mode ON!", "Starter: " + starter.getAsMention() + "\nOpponent: " + opponent.getAsMention(), true);
         e.getChannel().sendMessage(embedstatus.build()).queue();
         turn = starter;
         StringBuilder origBoard = new StringBuilder();
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                origBoard.append(getEmojiPos(i, j));
-            }
-            origBoard.append("\n");
-            e.getChannel().sendMessage(origBoard.toString()).queue();
+        origBoard.append("\n");
+        e.getChannel().sendMessage(origBoard.toString()).queue();
         }
-    }
 
     public void endGame(){ //Stop the game{
         if(e.getAuthor() == starter || e.getAuthor() == opponent){
-            new EmbedBuilder().setColor(Color.green).setTitle(Emoji.GAME + " Tic Tac Toe: Game Mode OFF!", null).setFooter(e.getAuthor().getName() + " ended the game.", null);
+            new EmbedBuilder().setColor(Color.green).setTitle(" Tic Tac Toe: Game Mode OFF!", null).setFooter(e.getAuthor().getName() + " ended the game.", null);
+            EmbedBuilder embedstatus = new EmbedBuilder().setColor(Color.green).addField(" Tic Tac Toe: Game Mode ON!", "Starter: " + starter.getAsMention() + "\nOpponent: " + opponent.getAsMention(), true);
             e.getChannel().sendMessage(embedstatus.build()).queue();
             }
         game.clearBoard();
@@ -80,13 +76,13 @@ public class TicTacToe {
             //Check who's turn is it
             if(event.getAuthor() == starter || event.getAuthor() ==	 opponent) {
                 if(event.getAuthor() != turn) {
-                    e.getChannel().sendMessage(Emoji.ERROR + " It's not your turn yet!").queue();
+                    e.getChannel().sendMessage(" It's not your turn yet!").queue();
                     return;
                 }
             }
 
             else
-                e.getChannel().sendMessage(Emoji.ERROR+" Do not interfere the game!").queue();
+                e.getChannel().sendMessage(" Do not interfere the game!").queue();
 
 
             if(!game.isOccupied(row, column)) {
@@ -94,19 +90,19 @@ public class TicTacToe {
                 game.drawBoard();
             }
             else {
-                e.getChannel().sendMessage(Emoji.ERROR + " The place is occupied. Use your eyes!").queue();
+                e.getChannel().sendMessage(" The place is occupied. Use your eyes!").queue();
                 return;
             }
 
             //Check for winner
             if(makeLine().equals("X"))	{
-                e.getChannel().sendMessage("\n" + Emoji.NO + "Player " + starter.getAsMention() + " (X) Wins!").queue();
+                e.getChannel().sendMessage("\n" + "Player " + starter.getAsMention() + " (X) Wins!").queue();
                 game.clearBoard();
                 AdminBot.getGuild(e.getGuild()).resetTicTacToe();
             }
 
             else if(makeLine().equals("O")) {
-                e.getChannel().sendMessage("\n" + Emoji.YES + "Player " + opponent.getAsMention() +	 " Wins!").queue();
+                e.getChannel().sendMessage("\n" + "Player " + opponent.getAsMention() +	 " Wins!").queue();
                 game.clearBoard();
                 AdminBot.getGuild(e.getGuild()).resetTicTacToe();
             }
@@ -123,11 +119,11 @@ public class TicTacToe {
         }
 
             catch(StringIndexOutOfBoundsException | NumberFormatException es) {
-                e.getChannel().sendMessage(Emoji.ERROR + " The 'Numbers' you enter is not valid.").queue();
+                e.getChannel().sendMessage(" The 'Numbers' you enter is not valid.").queue();
             }
 
             catch(ArrayIndexOutOfBoundsException ea) {
-                e.getChannel().sendMessage(Emoji.ERROR + " Invalid place!").queue();
+                e.getChannel().sendMessage(" Invalid place!").queue();
             }
         }
 
@@ -170,34 +166,6 @@ public class TicTacToe {
             return "none";
         }
 
-    private String getEmojiPos(int r, int c) {
-        String emoji = "";
-        if (r == 0) {
-            if (c == 0) emoji = Emoji.ONE;
-            else if (c == 1) emoji = Emoji.TWO;
-            else if (c == 2) emoji = Emoji.THREE;
-            }
-
-            else if (r == 1) {
-                if (c == 0) emoji = Emoji.FOUR;
-                else if (c == 1) emoji = Emoji.FIVE;
-                else if (c == 2) emoji = Emoji.SIX;
-            }
-
-            else if (r == 2) {
-                if (c == 0) emoji =	 Emoji.SEVEN;
-                else if (c == 1) emoji = Emoji.EIGHT;
-                else if (c == 2) emoji = Emoji.NINE;
-            }
-
-            if(game.isOccupied(r,c)) {
-                if (game.getBoard()[r][c].getID().equals("X"))
-                    emoji = Emoji.NO;
-                if (game.getBoard()[r][c].getID().equals("O"))
-                    emoji = Emoji.YES;
-        }
-            return emoji;
-    }
 
     private boolean catGame(){ //Check for cat GAME{
         Piece[][] end = game.getBoard();
