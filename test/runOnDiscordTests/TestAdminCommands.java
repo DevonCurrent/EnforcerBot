@@ -24,6 +24,21 @@ public class TestAdminCommands {
 
     //Tests for all four main Admin functionalities
     @Test
+    public void testInviteCommand() throws InterruptedException {
+        SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
+        Guild testingGuild = guilds.getElementsByName("CS222Testing").get(0);
+
+        SendClientMessage sentMessage = new SendClientMessage();
+        sentMessage.sendMessageToDiscord(clientAccount, "!invite TestBot");
+
+        Member testBot = testingGuild.getMembersByName("TestBot", true).get(0);
+
+        Assert.assertEquals(testBot.getEffectiveName(), "TestBot");
+    }
+
+
+
+    @Test
     public void testKickCommand() throws InterruptedException {
         Guild guild = botAccount.getGuildById("415502671483633664");
         Member memberToKick = guild.getMemberById("428266347101945887");
@@ -81,9 +96,9 @@ public class TestAdminCommands {
         SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
         Guild testingGuild = guilds.getElementsByName("CS222Testing").get(0);
 
-        SnowflakeCacheView<VoiceChannel> textChannels = testingGuild.getVoiceChannelCache();
-        VoiceChannel channel1 = textChannels.getElementsByName("Channel 1").get(0);
-        VoiceChannel channel2 = textChannels.getElementsByName("Channel 2").get(0);
+        SnowflakeCacheView<VoiceChannel> voiceChannels = testingGuild.getVoiceChannelCache();
+        VoiceChannel channel1 = voiceChannels.getElementsByName("Channel 1").get(0);
+        VoiceChannel channel2 = voiceChannels.getElementsByName("Channel 2").get(0);
 
         Assert.assertEquals(channel1.getName(), "Channel 1");
         Assert.assertEquals(channel1.getType(), ChannelType.VOICE);

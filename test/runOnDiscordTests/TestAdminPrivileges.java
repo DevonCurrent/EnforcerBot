@@ -23,5 +23,4 @@ public class TestAdminPrivileges {
     private JDA botAccount = accountCreator.createBotAccount();
     private JDA clientAccount = accountCreator.createClientAccount();
 
-
 }
