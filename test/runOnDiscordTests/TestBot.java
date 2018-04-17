@@ -4,6 +4,7 @@ import main.java.AccountCreator;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import org.junit.Assert;
@@ -25,6 +26,8 @@ public class TestBot {
     private String CS222TextChannelID = "415502671483633666";
     TextChannel CS222TextChannel = clientAccount.getTextChannelById(CS222TextChannelID);
 
+
+
     //tests that there is a connection between Discord and the users (bot and client)
     @Test
     public void testConnection(){
@@ -36,9 +39,13 @@ public class TestBot {
     //tests that the users are in the correct TextChannel ("general")
     @Test
     public void testUsersInTextChannel(){
-        String botInTextChannel = botAccount.getTextChannelById(CS222TextChannelID).getName();
-        String clientInTextChannel = clientAccount.getTextChannelById(CS222TextChannelID).getName();
-        Assert.assertEquals(clientInTextChannel, botInTextChannel, "general");  //test both are in general TextChannel
+        Guild clientInGuild = clientAccount.getGuildsByName("CS222Testing", true).get(0);
+        TextChannel clientInTextChannel = clientInGuild.getTextChannelsByName("general", true).get(0);
+
+        Guild botInGuild = botAccount.getGuildsByName("CS222Testing", true).get(0);
+        TextChannel botInTextChannel = botInGuild.getTextChannelsByName("general", true).get(0);
+
+        Assert.assertEquals(clientInTextChannel, botInTextChannel);  //test both are in general TextChannel
     }
 
     @Test
