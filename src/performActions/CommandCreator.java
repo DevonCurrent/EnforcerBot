@@ -15,7 +15,7 @@ public class CommandCreator {
 
     CommandCreator() {
         commands.put("!ping", new CommandRespondToPing());
-        commands.put("null", new NoResponseCommand());
+        commands.put("null", new SpamScanner());
         commands.put("!kick", new CommandRespondToKick());
         commands.put("!ban", new CommandRespondToBan());
         commands.put("!unban", new CommandRespondToUnban());
@@ -36,8 +36,8 @@ public class CommandCreator {
         return command;
     }
 
-    //if a user does not use a regex ('!') in their text, then the return will be NoResponseCommand
-    public Command doNothingCommand() {
+    //if a user does not use a regex ('!') in their text, then the return will be SpamScanner
+    public Command spamScannerCommand() {
         Command command = commands.get("null");
         command.doAction();
         return command;

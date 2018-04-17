@@ -21,6 +21,6 @@ public class CommandParser {
 
         //if there is no regex ('!'), return NoResponseCommand
         CommandCreator commandCreator = new CommandCreator();
-        return commandCreator.doNothingCommand();
+        return commandCreator.spamScannerCommand();
     }
 }
