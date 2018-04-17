@@ -1,4 +1,4 @@
-package testResources;
+package commands.InviteCommand;
 
 import net.dv8tion.jda.bot.sharding.ShardManager;
 import net.dv8tion.jda.core.JDA;

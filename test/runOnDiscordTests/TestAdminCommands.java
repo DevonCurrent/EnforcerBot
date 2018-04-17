@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 import org.junit.Assert;
 import org.junit.Test;
-import testResources.SendClientMessage;
+import commands.InviteCommand.SendClientMessage;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,8 +21,10 @@ public class TestAdminCommands {
     private JDA botAccount = accountCreator.createBotAccount();
     private JDA clientAccount = accountCreator.createClientAccount();
 
-
     //Tests for all four main Admin functionalities
+
+    //TODO: have this test pass by having it call a bot account that will automatically join using a event action listener.
+    //TODO: abstract the guilds variable and the above three lines to a separate class so they are not called every time.
     @Test
     public void testInviteCommand() throws InterruptedException {
         SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
@@ -30,6 +32,8 @@ public class TestAdminCommands {
 
         SendClientMessage sentMessage = new SendClientMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!invite TestBot");
+
+        TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
 
         Member testBot = testingGuild.getMembersByName("TestBot", true).get(0);
 

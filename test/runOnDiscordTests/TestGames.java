@@ -4,9 +4,8 @@ import commands.TicTacToe.TicTacToe;
 import main.java.AccountCreator;
 import net.dv8tion.jda.core.JDA;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
-import testResources.SendClientMessage;
+import commands.InviteCommand.SendClientMessage;
 
 
 public class TestGames {

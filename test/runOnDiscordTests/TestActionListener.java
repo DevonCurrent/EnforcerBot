@@ -5,10 +5,9 @@ import main.java.*;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import performActions.CommandParser;
-import testResources.SendClientMessage;
+import commands.InviteCommand.SendClientMessage;
 
 
 //TODO: pass testPingCommand, testInvalidCommand, and testDoNothingCommand

@@ -2,6 +2,7 @@ package performActions;
 
 
 import commands.*;
+import commands.InviteCommand.CommandSendInviteMessage;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class CommandCreator {
         commands.put("!unban", new CommandRespondToUnban());
         commands.put("!channels", new CommandRespondtoChannels());
         commands.put("!help", new CommandRespondToHelp());
+        commands.put("!invite", new CommandSendInviteMessage());
     }
 
     //returns a command that is created by calling the name of the command from the HashMap
@@ -37,7 +39,7 @@ public class CommandCreator {
     }
 
     //if a user does not use a regex ('!') in their text, then the return will be SpamScanner
-    public Command spamScannerCommand() {
+    public Command spamScannerCommand()  {
         Command command = commands.get("null");
         command.doAction();
         return command;
