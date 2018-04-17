@@ -4,6 +4,8 @@ package commands.TicTacToe;
 
 import java.awt.Color;
 import java.util.List;
+
+import main.java.AccountCreator;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
@@ -18,12 +20,15 @@ public class TicTacToe {
     private static int row, column;
     private static User turn;
 
+    private AccountCreator accountCreator = new AccountCreator();
+    private JDA botAccount = accountCreator.createBotAccount();
+
     public TicTacToe(MessageReceivedEvent event) {
             e = event;
             startGame();
         }
 
-    public void startGame() { // Keep the game progressing
+    private void startGame() { // Keep the game progressing
         // Set Players
         starter = e.getAuthor();
         List<User> mentionedUsers = e.getMessage().getMentionedUsers();
@@ -37,9 +42,7 @@ public class TicTacToe {
         EmbedBuilder embedstatus = new EmbedBuilder().setColor(Color.green).addField(" Tic Tac Toe: Game Mode ON!", "Starter: " + starter.getAsMention() + "\nOpponent: " + opponent.getAsMention(), true);
         e.getChannel().sendMessage(embedstatus.build()).queue();
         turn = starter;
-        StringBuilder origBoard = new StringBuilder();
-        origBoard.append("\n");
-        e.getChannel().sendMessage(origBoard.toString()).queue();
+        e.getChannel().sendMessage("\n").queue();
         }
 
     public void endGame(){ //Stop the game{
@@ -49,7 +52,7 @@ public class TicTacToe {
             e.getChannel().sendMessage(embedstatus.build()).queue();
             }
         game.clearBoard();
-        AdminBot.getGuild(e.getGuild()).resetTicTacToe();
+        //botAccount.getGuild(e.getGuild()).resetTicTacToe();
     }
 
     public void sendInput(String[] in, MessageReceivedEvent event){	//Set the input called by TicTacToeCommand{
@@ -85,9 +88,9 @@ public class TicTacToe {
                 e.getChannel().sendMessage(" Do not interfere the game!").queue();
 
 
-            if(!game.isOccupied(row, column)) {
+            if(game.isOccupied(row, column)) {
                 game.addPiece(new Piece(id), row, column);
-                game.drawBoard();
+                //game.drawBoard();
             }
             else {
                 e.getChannel().sendMessage(" The place is occupied. Use your eyes!").queue();
@@ -98,19 +101,19 @@ public class TicTacToe {
             if(makeLine().equals("X"))	{
                 e.getChannel().sendMessage("\n" + "Player " + starter.getAsMention() + " (X) Wins!").queue();
                 game.clearBoard();
-                AdminBot.getGuild(e.getGuild()).resetTicTacToe();
+                //botAccount.getGuild(e.getGuild()).resetTicTacToe();
             }
 
             else if(makeLine().equals("O")) {
                 e.getChannel().sendMessage("\n" + "Player " + opponent.getAsMention() +	 " Wins!").queue();
                 game.clearBoard();
-                AdminBot.getGuild(e.getGuild()).resetTicTacToe();
+                //botAccount.getGuild(e.getGuild()).resetTicTacToe();
             }
 
             else if(catGame()) {
                 e.getChannel().sendMessage("Cat game, no winner.").queue();
                 game.clearBoard();
-                AdminBot.getGuild(e.getGuild()).resetTicTacToe();
+                //botAccount.getGuild(e.getGuild()).resetTicTacToe();
             }
 
             else
@@ -171,7 +174,7 @@ public class TicTacToe {
         Piece[][] end = game.getBoard();
         for(int i = 0; i < end.length; i ++) {
             for(int j = 0; j < end[0].length; j++)	{
-                if(!game.isOccupied(i,j))
+                if(game.isOccupied(i,j))
                     return false;
             }
         }
