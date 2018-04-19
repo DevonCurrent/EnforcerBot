@@ -2,12 +2,15 @@ package commands.InviteCommand;
 
 import main.java.AccountCreator;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 //TODO: The bot needs to send the message through a private channel to the user
 //TODO: Need to verify that the bot will be able to contact a user that is outside of the guild
@@ -17,7 +20,7 @@ public class CommandSendInviteMessage implements commands.Command {
     private Message msg;
     private AccountCreator accountCreator = new AccountCreator();
     private JDA botAccount = accountCreator.createBotAccount();
-    SendClientMessage sentMessage = new SendClientMessage();
+    SendClientMessage msgToSend = new SendClientMessage();
 
     @Override
     public void doAction() {
@@ -28,14 +31,19 @@ public class CommandSendInviteMessage implements commands.Command {
 
         if (msgAsArray.length == 1) {
             msg.getTextChannel().sendMessage("You need to mention 1 or more members to ban!").queue();
-        }
-
-        else{
+        } else {
             String userToInviteName = msgAsArray[1];
             User userToInvite = botAccount.getUsersByName(userToInviteName, true).get(0);
-
+            System.out.println(userToInvite.getName());
+            PrivateChannel privateChannel = userToInvite.openPrivateChannel().complete();
+            try {
+                TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             CreateInvite createdInvite = new CreateInvite();
-            sentMessage.sendMessageToDiscord(botAccount, String.valueOf(createdInvite));
+            Message msgToPrivateChannel = new MessageBuilder().append(createdInvite).build();
+            privateChannel.sendMessage(msgToPrivateChannel).complete();
         }
     }
 

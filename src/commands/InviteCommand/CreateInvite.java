@@ -24,9 +24,6 @@ public class CreateInvite {
         generalChannel.createInvite().setMaxUses(1).complete();
         List<Invite> guildInvites = generalChannel.getInvites().complete();
 
-        //TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
-
         return guildInvites.get(0);
-
     }
 }
