@@ -6,7 +6,6 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 import org.junit.Assert;
 import org.junit.Test;
-import commands.InviteCommand.SendClientMessage;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,9 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 public class TestAdminCommands {
 
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA botAccount = accountCreator.createBotAccount();
-    private JDA clientAccount = accountCreator.createClientAccount();
+    private JDA botAccount = AccountCreator.createBotAccount();
+    private JDA clientAccount = AccountCreator.createClientAccount();
 
     //Tests for all four main Admin functionalities
 
@@ -27,10 +25,11 @@ public class TestAdminCommands {
     //TODO: abstract the guilds variable and the above three lines to a separate class so they are not called every time.
     @Test
     public void testInviteCommand() throws InterruptedException {
+
         SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
         Guild testingGuild = guilds.getElementsByName("CS222Testing").get(0);
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!invite TestBot");
 
         TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
@@ -53,7 +52,7 @@ public class TestAdminCommands {
 
         String memberToKickAsMention = memberToKick.getAsMention();
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!kick " + memberToKickAsMention);
 
         TimeUnit.SECONDS.sleep(3);
@@ -76,7 +75,7 @@ public class TestAdminCommands {
 
         String memberToKickAsMention = memberToBan.getAsMention();
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!ban " + memberToKickAsMention);
 
         TimeUnit.SECONDS.sleep(3);
@@ -92,7 +91,7 @@ public class TestAdminCommands {
     @Test
     public void testCreateChannels() throws InterruptedException {
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!channels 2");
 
         TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks

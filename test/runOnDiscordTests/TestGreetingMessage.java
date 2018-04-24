@@ -7,16 +7,14 @@ import net.dv8tion.jda.core.entities.Invite;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 import org.junit.Test;
-import commands.InviteCommand.SendClientMessage;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestGreetingMessage {
 
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA botAccount = accountCreator.createBotAccount();
-    private JDA clientAccount = accountCreator.createClientAccount();
+    private JDA botAccount = AccountCreator.createBotAccount();
+    private JDA clientAccount = AccountCreator.createClientAccount();
 
 
     @Test
@@ -33,7 +31,7 @@ public class TestGreetingMessage {
 
         Invite invite = guildInvites.get(0);
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(botAccount, String.valueOf(invite));
     }
 }

@@ -9,7 +9,6 @@ import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 //TODO: The bot needs to send the message through a private channel to the user
@@ -18,15 +17,10 @@ import java.util.concurrent.TimeUnit;
 public class CommandSendInviteMessage implements commands.Command {
 
     private Message msg;
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA botAccount = accountCreator.createBotAccount();
-    SendClientMessage msgToSend = new SendClientMessage();
+    private JDA botAccount = AccountCreator.createBotAccount();
 
     @Override
     public void doAction() {
-        SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
-        Guild testingGuild = guilds.getElementsByName("CS222Testing").get(0);
-
         String[] msgAsArray = msg.getContentRaw().split(" ");
 
         if (msgAsArray.length == 1) {
@@ -37,15 +31,15 @@ public class CommandSendInviteMessage implements commands.Command {
             System.out.println(userToInvite.getName());
             PrivateChannel privateChannel = userToInvite.openPrivateChannel().complete();
             try {
-                TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
+                TimeUnit.SECONDS.sleep(1);  //may need to adjust time for slower computers/networks
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            CreateInvite createdInvite = new CreateInvite();
-            Message msgToPrivateChannel = new MessageBuilder().append(createdInvite).build();
-            privateChannel.sendMessage(msgToPrivateChannel).complete();
+
+            new SendInvite(msg, privateChannel);
         }
     }
+
 
     @Override
     public void setMessage(Message msg) { this.msg = msg; }

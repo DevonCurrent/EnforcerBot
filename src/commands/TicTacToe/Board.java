@@ -7,7 +7,7 @@ public class Board{
     private Piece[][] board;
     private int round;
 
-    Board(int r, int c) {
+    public Board(int r, int c) {
         rows = r;
         cols = c;
         board = new Piece[r][c];
@@ -45,7 +45,7 @@ public class Board{
         return board;
     }
 
-    boolean isOccupied(int r, int c) {
+    public boolean isOccupied(int r, int c) {
         Piece p = board[r][c];
         String q = p.getID();
         return q.equals("	");

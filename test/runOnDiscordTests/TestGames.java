@@ -1,16 +1,13 @@
 package runOnDiscordTests;
 
 import commands.TicTacToe.Board;
-import commands.TicTacToe.TicTacToe;
 import main.java.AccountCreator;
 import net.dv8tion.jda.core.JDA;
 import org.junit.Assert;
 import org.junit.Test;
-import commands.InviteCommand.SendClientMessage;
 
 public class TestGames {
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA clientAccount = accountCreator.createClientAccount();
+    private JDA clientAccount = AccountCreator.createClientAccount();
 
     @Test
     public void testTicTacToe(){
@@ -19,7 +16,7 @@ public class TestGames {
             Assert.assertNull(guild.getTextChannels());
         }
         catch (NullPointerException NPE){
-            SendClientMessage sendMessage = new SendClientMessage();
+            SendMessage sendMessage = new SendMessage();
             sendMessage.sendMessageToDiscord(clientAccount, "There must not be a text channel.");
         }
 
@@ -31,7 +28,7 @@ public class TestGames {
 
     @Test
     public void testRNG(){
-        SendClientMessage sendMessage = new SendClientMessage();
+        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!rng 10");
         String rngMessage = sendMessage.getMessage().getContentRaw();
         Assert.assertEquals(rngMessage, "!rng 10");

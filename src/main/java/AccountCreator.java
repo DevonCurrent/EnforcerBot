@@ -15,7 +15,7 @@ public class AccountCreator {
 
     //creates the bot account using the Admin Bot token that was created during the setup. Throws exception if cannot connect.
     //buildBlocking() ensures that the bot is connected before continuing on with the code.
-    public JDA createBotAccount(){
+    public static JDA createBotAccount(){
         JDA botAccount=null;
         try{
             botAccount = new JDABuilder(AccountType.BOT).setToken("NDE3NTI1MzM1MzQ5Nzg4Njcz.DXdamw.D7uf_Xgq__v6joVAkEoBLIvrmxc").buildBlocking();
@@ -29,7 +29,7 @@ public class AccountCreator {
         return botAccount;
     }
 
-    public JDA createClientAccount(){
+    public static JDA createClientAccount(){
         try{
             clientAccount = new JDABuilder(AccountType.CLIENT).setToken("MzU1ODMzNjQzNDQyMTEwNDY0.DYb0mw.bVxAuYp1L-6PRjQS5JIvIE9Kewk").buildBlocking();
         } catch (LoginException | InterruptedException e) {
