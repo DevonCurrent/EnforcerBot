@@ -25,14 +25,4 @@ public class TestGames {
             throw new RuntimeException("That spot is occupied.");
         }
     }
-
-    @Test
-    public void testRNG(){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.sendMessageToDiscord(clientAccount, "!rng 10");
-        String rngMessage = sendMessage.getMessage().getContentRaw();
-        Assert.assertEquals(rngMessage, "!rng 10");
-        double random = Math.floor(Math.random() * 10) + 1;
-        sendMessage.sendMessageToDiscord(clientAccount, "The random number generator generates " + random + ".");
-    }
 }
