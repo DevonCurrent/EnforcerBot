@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.lang.reflect.Member;
-
+//Stores most recent messages to run through to check for spam.
 public class MessagesStored {
     Message firstMessage = null;
     Message secondMessage = null;

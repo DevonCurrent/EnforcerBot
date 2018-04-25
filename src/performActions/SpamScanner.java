@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.entities.*;
 
 public class SpamScanner implements Command {
     private Message msg;
-
+    //looks through the ActionListener to find Spam
     @Override
     public void doAction() {
         Member memberThatSentMsg = msg.getMember();
