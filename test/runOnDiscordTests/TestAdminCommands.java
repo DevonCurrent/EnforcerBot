@@ -6,6 +6,8 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 import org.junit.Assert;
 import org.junit.Test;
+import runOnDiscordTests.testResources.CreateClientAccount;
+import runOnDiscordTests.testResources.SendMessage;
 
 import java.util.Collections;
 import java.util.List;

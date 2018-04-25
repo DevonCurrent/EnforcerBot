@@ -6,6 +6,8 @@ import net.dv8tion.jda.core.entities.Message;
 import org.junit.Assert;
 import org.junit.Test;
 import performActions.CommandParser;
+import runOnDiscordTests.testResources.CreateClientAccount;
+import runOnDiscordTests.testResources.SendMessage;
 
 
 //TODO: pass testPingCommand, testInvalidCommand, and testDoNothingCommand

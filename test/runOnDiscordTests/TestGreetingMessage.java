@@ -7,6 +7,8 @@ import net.dv8tion.jda.core.entities.Invite;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 import org.junit.Test;
+import runOnDiscordTests.testResources.CreateClientAccount;
+import runOnDiscordTests.testResources.SendMessage;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
