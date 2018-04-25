@@ -1,7 +1,6 @@
 package runOnDiscordTests;
 
 import commands.Command;
-import main.java.*;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import org.junit.Assert;

@@ -6,6 +6,7 @@ import commands.greetingNewMembers.CommandCreateGreetingMessage;
 import net.dv8tion.jda.core.entities.Message;
 import java.util.HashMap;
 
+//Part of the Command Model. Will look at parsed messages and call on the corresponding commands.
 public class CommandCreator {
 
     private String commandName = null;
@@ -14,13 +15,13 @@ public class CommandCreator {
     private HashMap<String, Command> commands = new HashMap<>();
 
     CommandCreator() {
-        commands.put("!ping", new CommandRespondToPing());
+        commands.put("!ping", new CommandSendPingStatus());
         commands.put("null", new SpamScanner());
-        commands.put("!kick", new CommandRespondToKick());
-        commands.put("!ban", new CommandRespondToBan());
-        commands.put("!unban", new CommandRespondToUnban());
-        commands.put("!channels", new CommandRespondtoChannels());
-        commands.put("!help", new CommandRespondToHelp());
+        commands.put("!kick", new CommandKickUser());
+        commands.put("!ban", new CommandBanUser());
+        commands.put("!unban", new CommandUnbanUser());
+        commands.put("!channels", new CommandCreateChannels());
+        commands.put("!help", new CommandSendHelpMessage());
         commands.put("!greetings", new CommandCreateGreetingMessage());
         commands.put("!greetings?", new CommandCallGreetingMessage());
     }

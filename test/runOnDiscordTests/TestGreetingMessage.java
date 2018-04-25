@@ -1,7 +1,6 @@
 package runOnDiscordTests;
 
 import main.java.Bot;
-import main.java.CreateClientAccount;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Invite;

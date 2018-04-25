@@ -19,19 +19,19 @@ import javax.security.auth.login.LoginException;
 import java.util.Collection;
 import java.util.List;
 
+
+//Utilizes the Singleton model which must implement JDA. Creates a static instance of the bot (botAccount) that wraps the JDA.
 public final class Bot implements JDA {
 
     private static final Bot INSTANCE = new Bot();
 
-    JDA botAccount = null;
+    private JDA botAccount = null;
     //creates the bot account using the Admin Bot token that was created during the setup. Throws exception if cannot connect.
     //buildBlocking() ensures that the bot is connected before continuing on with the code.
     private Bot() {
         try {
             botAccount = new JDABuilder(AccountType.BOT).setToken("NDE3NTI1MzM1MzQ5Nzg4Njcz.DXdamw.D7uf_Xgq__v6joVAkEoBLIvrmxc").buildBlocking();
-        } catch (LoginException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
 

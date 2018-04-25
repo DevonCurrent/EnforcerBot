@@ -6,9 +6,10 @@ import net.dv8tion.jda.core.exceptions.PermissionException;
 
 import java.util.List;
 
-public class CommandRespondToKick implements commands.Command {
+//command to kick a user that is mentioned.
+public class CommandKickUser implements commands.Command {
 
-    Message msg=null;
+    private Message msg=null;
 
     @Override
     public void doAction() {
@@ -28,6 +29,8 @@ public class CommandRespondToKick implements commands.Command {
             for (User user : mentionedUsers) {
                 System.out.println(user);
                 Member member = guild.getMember(user);
+
+                //check if the user has higher authority than the bot
                 if (!selfMember.canInteract(member)) {
                     msg.getTextChannel().sendMessage(" Cannot kick member: " + member.getEffectiveName()
                             + ", they are in a higher role than I am!").queue();
@@ -41,6 +44,7 @@ public class CommandRespondToKick implements commands.Command {
                                 PermissionException pe = (PermissionException) error;
                                 Permission missingPermission = pe.getPermission();
 
+                                //check if the bot has permission to kick
                                 msg.getTextChannel().sendMessage(" I do not have the permission to kick " + member.getEffectiveName()
                                         + "\nRequired permission: `" + missingPermission.getName() + "`").queue();
                             } else {

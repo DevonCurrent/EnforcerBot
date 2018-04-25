@@ -3,6 +3,7 @@ package commands.greetingNewMembers;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 
+//creates a greeting message for the guild the message is sent from.
 public class CommandCreateGreetingMessage implements commands.Command {
     private Message msg;
 
@@ -12,8 +13,7 @@ public class CommandCreateGreetingMessage implements commands.Command {
         String greetingMessageContents = msg.getContentRaw().substring(11);
         Guild guild = msg.getGuild();
 
-        GreetingMessages greetingMessages = new GreetingMessages();
-        greetingMessages.updateGreetingMessages(guild, greetingMessageContents);
+        GreetingMessages.updateGreetingMessages(guild, greetingMessageContents);
     }
 
     @Override

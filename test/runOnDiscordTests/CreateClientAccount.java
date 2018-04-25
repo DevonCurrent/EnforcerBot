@@ -1,4 +1,4 @@
-package main.java;
+package runOnDiscordTests;
 
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -7,6 +7,8 @@ import net.dv8tion.jda.core.entities.User;
 
 import javax.security.auth.login.LoginException;
 
+
+//create the Devon Current's client account for testing. Will send messages to Discord to run the AdminBot commands.
 public class CreateClientAccount {
 
     public static JDA createClientAccount(){

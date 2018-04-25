@@ -5,8 +5,8 @@ import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 
-//command for bot to respond to a ping message.
-public class CommandRespondToPing implements Command {
+//command to display the ping (latency) of the bot.
+public class CommandSendPingStatus implements Command {
 
     private Message sentMessage;
     private Message msg;
