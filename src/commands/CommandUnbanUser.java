@@ -5,14 +5,10 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.exceptions.PermissionException;
-import net.dv8tion.jda.core.requests.RestAction;
-
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-public class CommandRespondToUnban implements commands.Command {
+//unban a user from the banlist. The user will still need to be invited back to the server.
+public class CommandUnbanUser implements commands.Command {
 
     private Message msg = null;
 
@@ -29,7 +25,7 @@ public class CommandRespondToUnban implements commands.Command {
             Guild guild = msg.getGuild();
             Member selfMember = guild.getSelfMember();
 
-            //Check if the bot have permission to kick.
+            //Check if the bot have permission to unban.
             if (!selfMember.hasPermission(Permission.BAN_MEMBERS)) {
                 msg.getTextChannel().sendMessage(" I need to have **Ban Members** Permission to unban members.").queue();
             } else if (!msg.getMember().hasPermission(Permission.BAN_MEMBERS)) {

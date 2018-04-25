@@ -1,24 +1,18 @@
 package runOnDiscordTests;
 
-import main.java.AccountCreator;
-import net.dv8tion.jda.core.AccountType;
+import main.java.Bot;
 import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.security.auth.login.LoginException;
-
 public class TestBot {
 
     //creates the accounts and tests their connections, if they are bots, and if they have access to the Test Channel ("general").
-
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA botAccount = accountCreator.createBotAccount();
-    private JDA clientAccount = accountCreator.createClientAccount();
+    private JDA botAccount = Bot.getInstance();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
     private User botID = botAccount.getUserById("417525335349788673");
     private User clientID = clientAccount.getUserById("355833643442110464");

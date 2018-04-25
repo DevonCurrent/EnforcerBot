@@ -5,9 +5,12 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.exceptions.PermissionException;
 import java.util.List;
 
-public class CommandRespondToBan implements commands.Command {
+/*command to ban a user from the server. Places them on a banlist, where they must be taken off before
+    being allowed to join again.
+*/
+public class CommandBanUser implements commands.Command {
 
-    Message msg = null;
+    private Message msg = null;
 
     @Override
     public void doAction() {
@@ -35,9 +38,7 @@ public class CommandRespondToBan implements commands.Command {
                 guild.getController().ban(member, 1).queue(
                         success -> msg.getTextChannel().sendMessage(" Banned " + member.getEffectiveName() + " User banned!\n").queue(),
                         error ->
-                        {
-                            error(member, error);
-                        });
+                                error(member, error));
             }
         }
     }

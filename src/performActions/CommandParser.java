@@ -2,7 +2,6 @@ package performActions;
 
 import commands.Command;
 import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
 
 //parses the message and calls on the respective command for the message
 public class CommandParser {

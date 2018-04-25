@@ -4,8 +4,7 @@ package commands.TicTacToe;
 
 import java.awt.Color;
 import java.util.List;
-
-import main.java.AccountCreator;
+import main.java.Bot;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
@@ -20,8 +19,7 @@ public class TicTacToe {
     private static int row, column;
     private static User turn;
 
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA botAccount = accountCreator.createBotAccount();
+    private JDA botAccount = Bot.getInstance();
 
     public TicTacToe(MessageReceivedEvent event) {
             e = event;

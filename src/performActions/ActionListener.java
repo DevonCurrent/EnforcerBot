@@ -2,16 +2,27 @@ package performActions;
 
 import commands.Command;
 import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-/*ActionListener listens for messages received on Discord. All messages received are sent to CommandParser and
-    the action of the command is performed. If no action exists, throw exception.
- */
 
-public class ActionListener extends ListenerAdapter{
 
+public class ActionListener extends ListenerAdapter {
+
+    /*ActionListener listens for members that join a guild that the bot is in. Will send a greeting message
+        (if it is set up in the guild) to the new member. Otherwise, nothing will happen.
+     */
+    public void onGuildMemberJoin(GuildMemberJoinEvent event){
+        Member newMember = event.getMember();
+        new SendGreetingMessage(newMember);
+    }
+
+
+    /*ActionListener listens for messages received on Discord. All messages received are sent to CommandParser and
+        the action of the command is performed. If no action exists, throw exception.
+     */
     public void onMessageReceived(MessageReceivedEvent event){
 
         if (event.isFromType(ChannelType.TEXT))

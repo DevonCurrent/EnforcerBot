@@ -1,18 +1,21 @@
 package commands;
 
+import main.java.Bot;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 
-//command for bot to respond to a ping message.
-public class CommandRespondToPing implements Command {
+//command to display the ping (latency) of the bot.
+public class CommandSendPingStatus implements Command {
 
     private Message sentMessage;
     private Message msg;
+    private Bot botAccount =Bot.getInstance();
 
     @Override
     public void doAction() {
-        sentMessage = new MessageBuilder().append("pong").build();
+        long ping = botAccount.getPing();
+        sentMessage = new MessageBuilder().append("My ping is " + ping +"ms!").build();
 
         TextChannel textChannel = msg.getTextChannel();
         textChannel.sendMessage(sentMessage).queue();

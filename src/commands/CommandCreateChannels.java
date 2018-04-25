@@ -2,7 +2,8 @@ package commands;
 
 import net.dv8tion.jda.core.entities.*;
 
-public class CommandRespondtoChannels implements commands.Command {
+//command to create 1-10 voice channels.
+public class CommandCreateChannels implements commands.Command {
     private Message msg;
 
     @Override

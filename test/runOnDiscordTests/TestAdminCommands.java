@@ -1,12 +1,11 @@
 package runOnDiscordTests;
 
-import main.java.AccountCreator;
+import main.java.Bot;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 import org.junit.Assert;
 import org.junit.Test;
-import testResources.SendClientMessage;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,12 +16,31 @@ import java.util.concurrent.TimeUnit;
 
 public class TestAdminCommands {
 
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA botAccount = accountCreator.createBotAccount();
-    private JDA clientAccount = accountCreator.createClientAccount();
-
+    private JDA botAccount = Bot.getInstance();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
     //Tests for all four main Admin functionalities
+
+    //TODO: have this test pass by having it call a bot account that will automatically join using a event action listener.
+    //TODO: abstract the guilds variable and the above three lines to a separate class so they are not called every time.
+    @Test
+    public void testInviteCommand() throws InterruptedException {
+
+        SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
+        Guild testingGuild = guilds.getElementsByName("CS222Testing").get(0);
+
+        SendMessage sentMessage = new SendMessage();
+        sentMessage.sendMessageToDiscord(clientAccount, "!invite TestBot");
+
+        TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
+
+        Member testBot = testingGuild.getMembersByName("TestBot", true).get(0);
+
+        Assert.assertEquals(testBot.getEffectiveName(), "TestBot");
+    }
+
+
+
     @Test
     public void testKickCommand() throws InterruptedException {
         Guild guild = botAccount.getGuildById("415502671483633664");
@@ -34,7 +52,7 @@ public class TestAdminCommands {
 
         String memberToKickAsMention = memberToKick.getAsMention();
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!kick " + memberToKickAsMention);
 
         TimeUnit.SECONDS.sleep(3);
@@ -57,7 +75,7 @@ public class TestAdminCommands {
 
         String memberToKickAsMention = memberToBan.getAsMention();
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!ban " + memberToKickAsMention);
 
         TimeUnit.SECONDS.sleep(3);
@@ -73,7 +91,7 @@ public class TestAdminCommands {
     @Test
     public void testCreateChannels() throws InterruptedException {
 
-        SendClientMessage sentMessage = new SendClientMessage();
+        SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!channels 2");
 
         TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
@@ -81,9 +99,9 @@ public class TestAdminCommands {
         SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
         Guild testingGuild = guilds.getElementsByName("CS222Testing").get(0);
 
-        SnowflakeCacheView<VoiceChannel> textChannels = testingGuild.getVoiceChannelCache();
-        VoiceChannel channel1 = textChannels.getElementsByName("Channel 1").get(0);
-        VoiceChannel channel2 = textChannels.getElementsByName("Channel 2").get(0);
+        SnowflakeCacheView<VoiceChannel> voiceChannels = testingGuild.getVoiceChannelCache();
+        VoiceChannel channel1 = voiceChannels.getElementsByName("Channel 1").get(0);
+        VoiceChannel channel2 = voiceChannels.getElementsByName("Channel 2").get(0);
 
         Assert.assertEquals(channel1.getName(), "Channel 1");
         Assert.assertEquals(channel1.getType(), ChannelType.VOICE);

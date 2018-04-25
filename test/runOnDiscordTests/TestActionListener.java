@@ -1,27 +1,22 @@
 package runOnDiscordTests;
 
 import commands.Command;
-import main.java.*;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import performActions.CommandParser;
-import testResources.SendClientMessage;
 
 
 //TODO: pass testPingCommand, testInvalidCommand, and testDoNothingCommand
 public class TestActionListener {
 
-    private AccountCreator accountCreator = new AccountCreator();
-    JDA botAccount = accountCreator.createBotAccount();
-    private JDA clientAccount = accountCreator.createClientAccount();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
-    //Test SendClientMessage can build a "!test" message and send it to Discord, to test other features.
+    //Test SendMessage can build a "!test" message and send it to Discord, to test other features.
     @Test
     public void testClientCanSendMessage(){
-        SendClientMessage sendMessages = new SendClientMessage();
+        SendMessage sendMessages = new SendMessage();
         sendMessages.sendMessageToDiscord(clientAccount, "!test");
         String helpMsg = sendMessages.getMessage().getContentRaw();
         Assert.assertEquals(helpMsg, "!test");
@@ -32,7 +27,7 @@ public class TestActionListener {
     //Sends "!ping" message, then tests that the bot responds with "pong"
     @Test
     public void testPingCommand(){
-        SendClientMessage sendMessage = new SendClientMessage();
+        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!ping");
         Command ac = CommandParser.parse(sendMessage.getMessage());
         ac.getSentMessage();
@@ -44,14 +39,14 @@ public class TestActionListener {
     //Send "!invalid" message, which has a wrong command. Tests that bot will throw an exception
     @Test
     public void testInvalidCommand(){
-        SendClientMessage sendMessage = new SendClientMessage();
+        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!Invalid");
     }
 
     //Sends "This is not a command." The bot replies to this message with DoNotRespondCommand
     @Test
     public void testDoNothingCommand(){
-        SendClientMessage sendMessage = new SendClientMessage();
+        SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "This is not a command.");
     }
 }
