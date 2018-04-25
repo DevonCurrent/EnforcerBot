@@ -1,6 +1,5 @@
 package commands;
 
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 
 public class SpamScanner implements Command {

@@ -11,9 +11,9 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
     the action of the command is performed. If no action exists, throw exception.
  */
 
-public class ActionListener extends ListenerAdapter{
+public class ActionListener extends ListenerAdapter {
 
-    public void onGuildMemberJoined(GuildMemberJoinEvent event){
+    public void onGuildMemberJoin(GuildMemberJoinEvent event){
         Member newMember = event.getMember();
         new SendGreetingMessage(newMember);
     }

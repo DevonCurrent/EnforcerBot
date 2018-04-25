@@ -1,13 +1,10 @@
 package main.java;
 
 import net.dv8tion.jda.bot.JDABot;
-import net.dv8tion.jda.bot.entities.ApplicationInfo;
-import net.dv8tion.jda.bot.sharding.ShardManager;
 import net.dv8tion.jda.client.JDAClient;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.hooks.IEventManager;
 import net.dv8tion.jda.core.managers.AudioManager;
