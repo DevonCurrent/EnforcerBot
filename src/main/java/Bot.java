@@ -1,10 +1,13 @@
 package main.java;
 
 import net.dv8tion.jda.bot.JDABot;
+import net.dv8tion.jda.bot.entities.ApplicationInfo;
+import net.dv8tion.jda.bot.sharding.ShardManager;
 import net.dv8tion.jda.client.JDAClient;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.hooks.IEventManager;
 import net.dv8tion.jda.core.managers.AudioManager;
@@ -23,11 +26,10 @@ public final class Bot implements JDA {
 
     private static final Bot INSTANCE = new Bot();
 
-    JDA botAccount;
-
+    JDA botAccount = null;
     //creates the bot account using the Admin Bot token that was created during the setup. Throws exception if cannot connect.
     //buildBlocking() ensures that the bot is connected before continuing on with the code.
-    private Bot(){
+    private Bot() {
         try {
             botAccount = new JDABuilder(AccountType.BOT).setToken("NDE3NTI1MzM1MzQ5Nzg4Njcz.DXdamw.D7uf_Xgq__v6joVAkEoBLIvrmxc").buildBlocking();
         } catch (LoginException e) {
@@ -35,206 +37,203 @@ public final class Bot implements JDA {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assert botAccount != null;
+
         botAccount.setAutoReconnect(true);
         botAccount.addEventListener(new LaunchToDiscord());
         botAccount.addEventListener(new ActionListener());
     }
 
-    public static Bot getInstance(){
+    public static Bot getInstance() {
         return INSTANCE;
     }
 
-
-
-    //JDA functions of the AdminBot
     @Override
     public Status getStatus() {
-        return null;
+        return botAccount.getStatus();
     }
 
     @Override
     public long getPing() {
-        return 0;
+        return botAccount.getPing();
     }
 
     @Override
     public List<String> getCloudflareRays() {
-        return null;
+        return botAccount.getCloudflareRays();
     }
 
     @Override
     public List<String> getWebSocketTrace() {
-        return null;
+        return botAccount.getWebSocketTrace();
     }
 
     @Override
     public void setEventManager(IEventManager iEventManager) {
-
+        botAccount.setEventManager(iEventManager);
     }
 
     @Override
     public void addEventListener(Object... objects) {
-
+        botAccount.addEventListener(objects);
     }
 
     @Override
     public void removeEventListener(Object... objects) {
-
+        botAccount.removeEventListener(objects);
     }
 
     @Override
     public List<Object> getRegisteredListeners() {
-        return null;
+        return botAccount.getRegisteredListeners();
     }
 
     @Override
     public GuildAction createGuild(String s) {
-        return null;
+        return botAccount.createGuild(s);
     }
 
     @Override
     public CacheView<AudioManager> getAudioManagerCache() {
-        return null;
+        return botAccount.getAudioManagerCache();
     }
 
     @Override
     public SnowflakeCacheView<User> getUserCache() {
-        return null;
+        return botAccount.getUserCache();
     }
 
     @Override
     public List<Guild> getMutualGuilds(User... users) {
-        return null;
+        return botAccount.getMutualGuilds(users);
     }
 
     @Override
     public List<Guild> getMutualGuilds(Collection<User> collection) {
-        return null;
+        return botAccount.getMutualGuilds(collection);
     }
 
     @Override
     public RestAction<User> retrieveUserById(String s) {
-        return null;
+        return botAccount.retrieveUserById(s);
     }
 
     @Override
     public RestAction<User> retrieveUserById(long l) {
-        return null;
+        return botAccount.retrieveUserById(l);
     }
 
     @Override
     public SnowflakeCacheView<Guild> getGuildCache() {
-        return null;
+        return botAccount.getGuildCache();
     }
 
     @Override
     public SnowflakeCacheView<Role> getRoleCache() {
-        return null;
+        return botAccount.getRoleCache();
     }
 
     @Override
     public SnowflakeCacheView<Category> getCategoryCache() {
-        return null;
+        return botAccount.getCategoryCache();
     }
 
     @Override
     public SnowflakeCacheView<TextChannel> getTextChannelCache() {
-        return null;
+        return botAccount.getTextChannelCache();
     }
 
     @Override
     public SnowflakeCacheView<VoiceChannel> getVoiceChannelCache() {
-        return null;
+        return botAccount.getVoiceChannelCache();
     }
 
     @Override
     public SnowflakeCacheView<PrivateChannel> getPrivateChannelCache() {
-        return null;
+        return botAccount.getPrivateChannelCache();
     }
 
     @Override
     public SnowflakeCacheView<Emote> getEmoteCache() {
-        return null;
+        return botAccount.getEmoteCache();
     }
 
     @Override
     public SelfUser getSelfUser() {
-        return null;
+        return botAccount.getSelfUser();
     }
 
     @Override
     public Presence getPresence() {
-        return null;
+        return botAccount.getPresence();
     }
 
     @Override
     public ShardInfo getShardInfo() {
-        return null;
+        return botAccount.getShardInfo();
     }
 
     @Override
     public String getToken() {
-        return null;
+        return botAccount.getToken();
     }
 
     @Override
     public long getResponseTotal() {
-        return 0;
+        return botAccount.getResponseTotal();
     }
 
     @Override
     public int getMaxReconnectDelay() {
-        return 0;
+        return botAccount.getMaxReconnectDelay();
     }
 
     @Override
     public void setAutoReconnect(boolean b) {
-
+        botAccount.setAutoReconnect(b);
     }
 
     @Override
     public void setRequestTimeoutRetry(boolean b) {
-
+        botAccount.setRequestTimeoutRetry(b);
     }
 
     @Override
     public boolean isAutoReconnect() {
-        return false;
+        return botAccount.isAutoReconnect();
     }
 
     @Override
     public boolean isAudioEnabled() {
-        return false;
+        return botAccount.isAudioEnabled();
     }
 
     @Override
     public boolean isBulkDeleteSplittingEnabled() {
-        return false;
+        return botAccount.isBulkDeleteSplittingEnabled();
     }
 
     @Override
     public void shutdown() {
-
+        botAccount.shutdown();
     }
 
     @Override
     public void shutdownNow() {
-
+        botAccount.shutdownNow();
     }
 
     @Override
     public AccountType getAccountType() {
-        return null;
+        return botAccount.getAccountType();
     }
 
     @Override
     public JDAClient asClient() {
-        return null;
+        return botAccount.asClient();
     }
 
     @Override
     public JDABot asBot() {
-        return null;
+        return botAccount.asBot();
     }
 }

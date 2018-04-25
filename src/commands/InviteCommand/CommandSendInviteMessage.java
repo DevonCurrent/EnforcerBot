@@ -1,12 +1,7 @@
 package commands.InviteCommand;
 
 import main.java.Bot;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.User;
-
-import java.util.concurrent.TimeUnit;
+import net.dv8tion.jda.core.entities.*;
 
 //TODO: The bot needs to send the message through a private channel to the user
 //TODO: Need to verify that the bot will be able to contact a user that is outside of the guild
@@ -14,24 +9,22 @@ import java.util.concurrent.TimeUnit;
 public class CommandSendInviteMessage implements commands.Command {
 
     private Message msg;
-    private JDA botAccount = Bot.getInstance();
+    private Bot botAccount = Bot.getInstance();
 
     @Override
     public void doAction() {
         String[] msgAsArray = msg.getContentRaw().split(" ");
+        Guild guild = msg.getGuild();
 
         if (msgAsArray.length == 1) {
-            msg.getTextChannel().sendMessage("You need to mention 1 or more members to ban!").queue();
+            msg.getTextChannel().sendMessage("You need to mention 1 member to invite!").queue();
         } else {
             String userToInviteName = msgAsArray[1];
+            msg.getTextChannel().sendMessage("Invite to " + userToInviteName + " sent!").queue();
+
+            botAccount.getUsersByName(userToInviteName, true).get(0);
             User userToInvite = botAccount.getUsersByName(userToInviteName, true).get(0);
-            System.out.println(userToInvite.getName());
             PrivateChannel privateChannel = userToInvite.openPrivateChannel().complete();
-            try {
-                TimeUnit.SECONDS.sleep(1);  //may need to adjust time for slower computers/networks
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             new SendInvite(msg, privateChannel);
         }
