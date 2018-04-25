@@ -2,7 +2,6 @@ package performActions;
 
 import commands.Command;
 import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 

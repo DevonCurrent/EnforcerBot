@@ -5,12 +5,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.exceptions.PermissionException;
-import net.dv8tion.jda.core.requests.RestAction;
-
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class CommandRespondToUnban implements commands.Command {
 

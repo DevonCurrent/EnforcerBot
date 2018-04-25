@@ -1,13 +1,13 @@
 package runOnDiscordTests;
 
 import commands.TicTacToe.Board;
-import main.java.AccountCreator;
+import main.java.CreateClientAccount;
 import net.dv8tion.jda.core.JDA;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TestGames {
-    private JDA clientAccount = AccountCreator.createClientAccount();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
     @Test
     public void testTicTacToe(){

@@ -4,7 +4,6 @@ package performActions;
 import commands.*;
 import commands.InviteCommand.CommandSendInviteMessage;
 import net.dv8tion.jda.core.entities.Message;
-
 import java.util.HashMap;
 
 public class CommandCreator {

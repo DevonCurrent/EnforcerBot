@@ -1,6 +1,7 @@
 package runOnDiscordTests;
 
-import main.java.AccountCreator;
+import main.java.Bot;
+import main.java.CreateClientAccount;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Invite;
@@ -13,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 public class TestGreetingMessage {
 
-    private JDA botAccount = AccountCreator.createBotAccount();
-    private JDA clientAccount = AccountCreator.createClientAccount();
+    private JDA botAccount = Bot.getInstance();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
 
     @Test

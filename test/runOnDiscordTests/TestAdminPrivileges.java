@@ -1,14 +1,14 @@
 package runOnDiscordTests;
 
-import main.java.AccountCreator;
+import main.java.Bot;
+import main.java.CreateClientAccount;
 import net.dv8tion.jda.core.JDA;
 
 //Test that only admins have priviledge to kick, ban, and make channels in the server.
 
 public class TestAdminPrivileges {
 
-    private AccountCreator accountCreator = new AccountCreator();
-    private JDA botAccount = accountCreator.createBotAccount();
-    private JDA clientAccount = accountCreator.createClientAccount();
+    private JDA botAccount = Bot.getInstance();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
 }

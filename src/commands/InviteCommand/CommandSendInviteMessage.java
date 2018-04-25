@@ -1,13 +1,10 @@
 package commands.InviteCommand;
 
-import main.java.AccountCreator;
+import main.java.Bot;
 import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class CommandSendInviteMessage implements commands.Command {
 
     private Message msg;
-    private JDA botAccount = AccountCreator.createBotAccount();
+    private JDA botAccount = Bot.getInstance();
 
     @Override
     public void doAction() {

@@ -1,6 +1,7 @@
 package runOnDiscordTests;
 
-import main.java.AccountCreator;
+import main.java.Bot;
+import main.java.CreateClientAccount;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
@@ -16,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 public class TestAdminCommands {
 
-    private JDA botAccount = AccountCreator.createBotAccount();
-    private JDA clientAccount = AccountCreator.createClientAccount();
+    private JDA botAccount = Bot.getInstance();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
     //Tests for all four main Admin functionalities
 

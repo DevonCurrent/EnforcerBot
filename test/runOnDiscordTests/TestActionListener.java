@@ -12,7 +12,7 @@ import performActions.CommandParser;
 //TODO: pass testPingCommand, testInvalidCommand, and testDoNothingCommand
 public class TestActionListener {
 
-    private JDA clientAccount = AccountCreator.createClientAccount();
+    private JDA clientAccount = CreateClientAccount.createClientAccount();
 
     //Test SendMessage can build a "!test" message and send it to Discord, to test other features.
     @Test
