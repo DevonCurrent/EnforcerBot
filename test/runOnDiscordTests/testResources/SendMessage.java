@@ -1,4 +1,4 @@
-package runOnDiscordTests;
+package runOnDiscordTests.testResources;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Guild;

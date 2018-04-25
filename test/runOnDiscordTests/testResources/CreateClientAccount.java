@@ -1,4 +1,4 @@
-package runOnDiscordTests;
+package runOnDiscordTests.testResources;
 
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
