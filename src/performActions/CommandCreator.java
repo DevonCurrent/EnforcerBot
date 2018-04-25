@@ -2,7 +2,7 @@ package performActions;
 
 
 import commands.*;
-import commands.InviteCommand.CommandSendInviteMessage;
+import commands.greetingNewMembers.CommandCreateGreetingMessage;
 import net.dv8tion.jda.core.entities.Message;
 import java.util.HashMap;
 
@@ -21,7 +21,7 @@ public class CommandCreator {
         commands.put("!unban", new CommandRespondToUnban());
         commands.put("!channels", new CommandRespondtoChannels());
         commands.put("!help", new CommandRespondToHelp());
-        commands.put("!invite", new CommandSendInviteMessage());
+        commands.put("!greetings", new CommandCreateGreetingMessage());
     }
 
     //returns a command that is created by calling the name of the command from the HashMap

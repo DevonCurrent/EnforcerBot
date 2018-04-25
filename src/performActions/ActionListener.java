@@ -2,6 +2,8 @@ package performActions;
 
 import commands.Command;
 import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -10,6 +12,12 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
  */
 
 public class ActionListener extends ListenerAdapter{
+
+    public void onGuildMemberJoined(GuildMemberJoinEvent event){
+        Member newMember = event.getMember();
+        new SendGreetingMessage(newMember);
+    }
+
 
     public void onMessageReceived(MessageReceivedEvent event){
 
