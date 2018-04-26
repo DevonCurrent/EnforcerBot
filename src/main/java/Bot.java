@@ -30,7 +30,7 @@ public final class Bot implements JDA {
     //buildBlocking() ensures that the bot is connected before continuing on with the code.
     private Bot() {
         try {
-            botAccount = new JDABuilder(AccountType.BOT).setToken("NDE3NTI1MzM1MzQ5Nzg4Njcz.DXdamw.D7uf_Xgq__v6joVAkEoBLIvrmxc").buildBlocking();
+            botAccount = new JDABuilder(AccountType.BOT).setToken("NDM5MDIxNDExNjA5MDgzOTA0.DcNGFg.h3Pu-ilKV_trlSeDsE67pNrqim0").buildBlocking();
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }

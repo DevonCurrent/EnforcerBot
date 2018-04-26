@@ -11,7 +11,6 @@ import testResources.SendMessage;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 /*Test the administrator commands that manage members (ban, kick, unban, channels).
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class TestManageMembersCommands {
     private JDA botAccount = Bot.getInstance();
     private JDA clientAccount = CreateClientAccount.createClientAccount();
-    Guild testingGuild = botAccount.getGuildsByName("CS222Testing", true).get(0);
+    private Guild testingGuild = botAccount.getGuildsByName("CS222Testing", true).get(0);
 
     //kick member from the guild. Will test that they are part of the guild before and after being kicked.
     @Test
@@ -34,8 +33,6 @@ public class TestManageMembersCommands {
         String memberToKickAsMention = userToKick.getAsMention();
         SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!kick " + memberToKickAsMention);
-
-        TimeUnit.SECONDS.sleep(3);
 
         isMember = testingGuild.isMember(userToKick);
         Assert.assertEquals(isMember, false);
@@ -52,8 +49,6 @@ public class TestManageMembersCommands {
 
         SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!ban " + userToBanAsMention);
-
-        TimeUnit.SECONDS.sleep(3);
 
         isMember = testingGuild.isMember(userToBan);
         Assert.assertEquals(isMember, false);   //Assert that the user is no longer in the guild
@@ -80,8 +75,6 @@ public class TestManageMembersCommands {
 
         SendMessage sentMessage = new SendMessage();
         sentMessage.sendMessageToDiscord(clientAccount, "!channels 2");
-
-        TimeUnit.SECONDS.sleep(3);  //may need to adjust time for slower computers/networks
 
         SnowflakeCacheView<Guild> guilds = botAccount.getGuildCache();
         Guild testingGuild = guilds.getElementsByName("CS222Testing").get(0);

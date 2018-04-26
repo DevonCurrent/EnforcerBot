@@ -36,8 +36,6 @@ public final class MessagesStored {
         String secondMessageContents = storedMessages[1].getContentRaw();
         String thirdMessageContents = storedMessages[2].getContentRaw();
 
-        System.out.println(thirdMessageContents);
-
         net.dv8tion.jda.core.entities.Member firstMember = storedMessages[0].getMember();
         net.dv8tion.jda.core.entities.Member secondMember = storedMessages[1].getMember();
         net.dv8tion.jda.core.entities.Member thirdMember = storedMessages[2].getMember();

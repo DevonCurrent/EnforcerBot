@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class TestInformationCommands {
     private JDA botAccount = Bot.getInstance();
     private JDA clientAccount = CreateClientAccount.createClientAccount();
-    Guild testingGuild = botAccount.getGuildsByName("CS222Testing", true).get(0);
+    private Guild testingGuild = botAccount.getGuildsByName("CS222Testing", true).get(0);
 
     //client sends "!ping" message, then tests that the bot responds with a message of its latency to the general channel.
     @Test
@@ -25,8 +25,6 @@ public class TestInformationCommands {
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!ping");
-
-        TimeUnit.SECONDS.sleep(3);  //Wait to send message to discord. Time may vary based on computer/network
 
         TextChannel generalTextChannel = testingGuild.getTextChannelsByName("General", true).get(0);
         String latestMsgID = generalTextChannel.getLatestMessageId();
@@ -40,8 +38,6 @@ public class TestInformationCommands {
     public void testHelpCommand() throws InterruptedException {
         SendMessage sendMessage = new SendMessage();
         sendMessage.sendMessageToDiscord(clientAccount, "!help");
-
-        TimeUnit.SECONDS.sleep(3);  //Wait to send message to discord. Time may vary based on computer/network
 
         TextChannel generalTextChannel = testingGuild.getTextChannelsByName("General", true).get(0);
         String latestMsgID = generalTextChannel.getLatestMessageId();
