@@ -7,9 +7,9 @@ import net.dv8tion.jda.core.entities.Message;
 public class CommandParser {
 
     public static Command parse(Message msg) throws RuntimeException {
-        String msgString = msg.getContentRaw();
+        String msgContents = msg.getContentRaw();
 
-        if (msgString.startsWith("!")){
+        if (msgContents.startsWith("!")){
             String requestedMessage = msg.getContentRaw();
             String[] separatedWords = requestedMessage.split(" ");
 
@@ -18,8 +18,8 @@ public class CommandParser {
             return commandCreator.create(msg);
         }
 
-        //if there is no regex ('!'), return NoResponseCommand
+        //if there is no regex ('!'), return SpamScanner
         CommandCreator commandCreator = new CommandCreator();
-        return commandCreator.spamScannerCommand();
+        return commandCreator.spamScannerCommand(msg);
     }
 }

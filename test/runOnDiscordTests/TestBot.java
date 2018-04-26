@@ -5,10 +5,9 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.SelfUser;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
 import org.junit.Assert;
 import org.junit.Test;
-import runOnDiscordTests.testResources.CreateClientAccount;
+import testResources.CreateClientAccount;
 
 public class TestBot {
 

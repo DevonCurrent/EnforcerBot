@@ -3,6 +3,7 @@ package performActions;
 import commands.*;
 import commands.greetingNewMembers.CommandCallGreetingMessage;
 import commands.greetingNewMembers.CommandCreateGreetingMessage;
+import monitorSpam.SpamScanner;
 import net.dv8tion.jda.core.entities.Message;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class CommandCreator {
 
     CommandCreator() {
         commands.put("!ping", new CommandSendPingStatus());
-        commands.put("null", new SpamScanner());
+        commands.put("spam", new SpamScanner());
         commands.put("!kick", new CommandKickUser());
         commands.put("!ban", new CommandBanUser());
         commands.put("!unban", new CommandUnbanUser());
@@ -40,9 +41,9 @@ public class CommandCreator {
     }
 
     //if a user does not use a regex ('!') in their text, then the return will be SpamScanner
-    public Command spamScannerCommand()  {
-        Command command = commands.get("null");
-        command.doAction();
+    public Command spamScannerCommand(Message msg)  {
+        Command command = commands.get("spam");
+        command.setMessage(msg);
         return command;
     }
 

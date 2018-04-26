@@ -1,4 +1,4 @@
-package testCommands;
+package runOnDiscordTests.testCommands;
 
 import main.java.Bot;
 import net.dv8tion.jda.core.JDA;
@@ -6,8 +6,8 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.utils.cache.SnowflakeCacheView;
 import org.junit.Assert;
 import org.junit.Test;
-import runOnDiscordTests.testResources.CreateClientAccount;
-import runOnDiscordTests.testResources.SendMessage;
+import testResources.CreateClientAccount;
+import testResources.SendMessage;
 
 import java.util.Iterator;
 import java.util.List;

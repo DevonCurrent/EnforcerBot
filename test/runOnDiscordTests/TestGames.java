@@ -4,8 +4,8 @@ import commands.TicTacToe.Board;
 import net.dv8tion.jda.core.JDA;
 import org.junit.Assert;
 import org.junit.Test;
-import runOnDiscordTests.testResources.CreateClientAccount;
-import runOnDiscordTests.testResources.SendMessage;
+import testResources.CreateClientAccount;
+import testResources.SendMessage;
 
 public class TestGames {
     private JDA clientAccount = CreateClientAccount.createClientAccount();
