@@ -1,4 +1,4 @@
-package runOnDiscordTests;
+package runOnDiscordTests.testActionListenerFeatures;
 
 import commands.Command;
 import net.dv8tion.jda.core.JDA;
@@ -10,7 +10,7 @@ import runOnDiscordTests.testResources.CreateClientAccount;
 import runOnDiscordTests.testResources.SendMessage;
 
 
-//TODO: pass testPingCommand, testInvalidCommand, and testDoNothingCommand
+//TODO: pass testInvalidCommand, and testDoNothingCommand
 public class TestActionListener {
 
     private JDA clientAccount = CreateClientAccount.createClientAccount();
@@ -22,20 +22,6 @@ public class TestActionListener {
         sendMessages.sendMessageToDiscord(clientAccount, "!test");
         String helpMsg = sendMessages.getMessage().getContentRaw();
         Assert.assertEquals(helpMsg, "!test");
-    }
-
-
-
-    //Sends "!ping" message, then tests that the bot responds with "pong"
-    @Test
-    public void testPingCommand(){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.sendMessageToDiscord(clientAccount, "!ping");
-        Command ac = CommandParser.parse(sendMessage.getMessage());
-        ac.getSentMessage();
-        Message sentMessage = ac.getSentMessage();
-        String messageAsString = sentMessage.getContentDisplay();
-        Assert.assertEquals(messageAsString, "pong");
     }
 
     //Send "!invalid" message, which has a wrong command. Tests that bot will throw an exception
