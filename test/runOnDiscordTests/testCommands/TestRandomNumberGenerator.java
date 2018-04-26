@@ -7,7 +7,6 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.junit.Assert;
 import org.junit.Test;
-import testResources.CreateClientAccount;
 import testResources.SendMessage;
 
 import java.util.concurrent.TimeUnit;

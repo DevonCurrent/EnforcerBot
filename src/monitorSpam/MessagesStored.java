@@ -1,10 +1,7 @@
 package monitorSpam;
 
-import main.java.Bot;
-import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.requests.restaction.RoleAction;
 
 import java.awt.*;

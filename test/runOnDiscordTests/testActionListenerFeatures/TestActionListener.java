@@ -7,7 +7,6 @@ import org.junit.Test;
 import testResources.SendMessage;
 
 
-//TODO: pass testInvalidCommand, and testDoNothingCommand
 public class TestActionListener {
     private Bot botAccount = Bot.getInstance();
     private Guild testingGuild = botAccount.getGuildsByName("CS222Testing", true).get(0);

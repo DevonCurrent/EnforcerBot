@@ -2,7 +2,6 @@ package commands;
 
 import main.java.Bot;
 import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 
@@ -18,7 +17,7 @@ public class CommandCreateRandomNumber implements Command {
     public void doAction() {
         String[] msgContents = msg.getContentRaw().split(" ");
         Random randomNumber = new Random();
-        String reply = null;
+        String reply;
 
         //DEFAULT of generating a random number from 1 to 6
         if(msgContents.length == 1){
