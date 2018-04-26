@@ -8,10 +8,7 @@ public class SpamScanner implements Command {
     //looks through the ActionListener to find Spam
     @Override
     public void doAction() {
-        Member memberThatSentMsg = msg.getMember();
-        MessagesStored messagesStored = new MessagesStored();
-        messagesStored.updateMessagesStored(msg);
-        messagesStored.compareMessages();
+
     }
 
     // is necessary for library to function
