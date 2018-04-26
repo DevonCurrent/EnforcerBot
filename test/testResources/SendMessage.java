@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
-//sends a built message to Discord using a member account (bot or client)
+//sends a built message to the testing channel "General" in the CS222Testing guild using a member account (bot or client)
 public class SendMessage {
     private Message msg = null;
 

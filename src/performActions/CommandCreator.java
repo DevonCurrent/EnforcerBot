@@ -25,6 +25,7 @@ public class CommandCreator {
         commands.put("!help", new CommandSendHelpMessage());
         commands.put("!greetings", new CommandCreateGreetingMessage());
         commands.put("!greetings?", new CommandCallGreetingMessage());
+        commands.put("!rng", new CommandCreateRandomNumber());
     }
 
     //returns a command that is created by calling the name of the command from the HashMap
