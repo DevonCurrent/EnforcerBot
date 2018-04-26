@@ -1,4 +1,4 @@
-# The Enforcer Bot - Discord
+# EnforcerBot - Discord
 
 ##### Developed by: Devon Current, Ryan Denney, Sean Jones, Jawad al-Mamoon
 
