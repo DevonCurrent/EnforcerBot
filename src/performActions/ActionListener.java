@@ -25,18 +25,19 @@ public class ActionListener extends ListenerAdapter {
      */
     public void onMessageReceived(MessageReceivedEvent event){
 
-        if (event.isFromType(ChannelType.TEXT))
-        {
-            //will display messages that appear on any Discord server the bot is in.
-            System.out.printf("[%s][%s] %#s: %s%n", event.getGuild().getName(),
-                    event.getChannel().getName(), event.getAuthor(), event.getMessage().getContentDisplay());
+        if (event.isFromType(ChannelType.TEXT)){
+            if(!event.getAuthor().isBot()) {    //do not keep track of bot accounts messages.
 
-            try{
-                Command actionCommand = CommandParser.parse(event.getMessage());
-                actionCommand.doAction();
-            }
-            catch(RuntimeException e){
-                event.getTextChannel().sendMessage("That is an invalid request. If you need help knowing my functions, type '!help'").queue();
+                //will display messages that appear on any Discord server the bot is in.
+                System.out.printf("[%s][%s] %#s: %s%n", event.getGuild().getName(),
+                        event.getChannel().getName(), event.getAuthor(), event.getMessage().getContentDisplay());
+
+                try {
+                    Command actionCommand = CommandParser.parse(event.getMessage());
+                    actionCommand.doAction();
+                } catch (RuntimeException e) {
+                    event.getTextChannel().sendMessage("That is an invalid request. If you need help knowing my functions, type '!help'").queue();
+                }
             }
         }
     }

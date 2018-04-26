@@ -51,7 +51,7 @@ public class CommandCreateRandomNumber implements Command {
                 reply = ("I'm sorry. I don't know how to deal with negative numbers...");
             }
             else if(maxNumber == 0){
-                reply = ("You want a random number and you are using 0? Ok, then it is 0!");
+                reply = ("You want a random number and you are using 0? Ok... Here is a 0!");
             }
             else{
                 Random randomNumber = new Random();

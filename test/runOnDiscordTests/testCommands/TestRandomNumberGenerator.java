@@ -74,7 +74,7 @@ public class TestRandomNumberGenerator {
         sendRNGMessage("!rng 0");
 
         String latestMsg = retrieveLatestMessage();
-        String expectedResponse = "You want a random number and you are using 0? Ok, then it is 0!";
+        String expectedResponse = "You want a random number and you are using 0? Ok... Here is a 0!";
 
         Assert.assertEquals(latestMsg, expectedResponse);
     }

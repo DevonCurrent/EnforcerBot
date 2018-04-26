@@ -18,7 +18,7 @@ public final class MessagesStored {
 
     private static final MessagesStored INSTANCE = new MessagesStored();
 
-    Message storedMessages[] = {null, null, null};
+    private Message storedMessages[] = {null, null, null};
 
     private MessagesStored(){ }
 
@@ -36,21 +36,11 @@ public final class MessagesStored {
         String secondMessageContents = storedMessages[1].getContentRaw();
         String thirdMessageContents = storedMessages[2].getContentRaw();
 
+        System.out.println(thirdMessageContents);
+
         net.dv8tion.jda.core.entities.Member firstMember = storedMessages[0].getMember();
         net.dv8tion.jda.core.entities.Member secondMember = storedMessages[1].getMember();
         net.dv8tion.jda.core.entities.Member thirdMember = storedMessages[2].getMember();
-
-        System.out.println(firstMessageContents);
-        System.out.println(firstMember.getEffectiveName());
-
-        System.out.println(secondMessageContents);
-        System.out.println(secondMember.getEffectiveName());
-
-        System.out.println(thirdMessageContents);
-        System.out.println(thirdMember.getEffectiveName());
-
-
-
 
         if (firstMember.equals(secondMember) && secondMember.equals(thirdMember)) {
             if (firstMessageContents.equals(secondMessageContents) && secondMessageContents.equals(thirdMessageContents)) {
@@ -63,9 +53,6 @@ public final class MessagesStored {
 
     //To prevent comparing messages until all messages are assigned values.
     public boolean isStorageFull(){
-        if(storedMessages[0] == null)
-            return false;
-        else
-            return true;
+        return storedMessages[0] != null;
     }
 }
