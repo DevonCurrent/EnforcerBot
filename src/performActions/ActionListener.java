@@ -27,6 +27,7 @@ public class ActionListener extends ListenerAdapter {
 
         if (event.isFromType(ChannelType.TEXT))
         {
+            //will display messages that appear on any Discord server the bot is in.
             System.out.printf("[%s][%s] %#s: %s%n", event.getGuild().getName(),
                     event.getChannel().getName(), event.getAuthor(), event.getMessage().getContentDisplay());
 

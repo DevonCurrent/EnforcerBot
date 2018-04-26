@@ -33,7 +33,7 @@ public class CommandCreateRandomNumber implements Command {
 
         //If more than 1 number is stated, or if text is made after "!rng", it will respond with this.
         else{
-            reply = ("You may only choose one number for the random number generator. Example: \"!rng 10\" \n");
+            reply = ("You may only choose one number for the random number generator. Example: \"!rng 10\"");
         }
 
         sentMessage = new MessageBuilder().append(reply).build();
@@ -60,7 +60,7 @@ public class CommandCreateRandomNumber implements Command {
             }
 
         }catch (NumberFormatException ex){
-            reply = ("You must choose a number for the random number generator.\n");
+            reply = ("You must choose a number for the random number generator.");
         }
         return reply;
     }

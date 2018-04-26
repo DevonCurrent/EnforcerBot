@@ -1,8 +1,8 @@
 package performActions;
 
 import commands.*;
-import commands.greetingNewMembers.CommandCallGreetingMessage;
-import commands.greetingNewMembers.CommandCreateGreetingMessage;
+import commands.greetingNewMembersCommands.CommandCallGreetingMessage;
+import commands.greetingNewMembersCommands.CommandCreateGreetingMessage;
 import monitorSpam.SpamScanner;
 import net.dv8tion.jda.core.entities.Message;
 import java.util.HashMap;

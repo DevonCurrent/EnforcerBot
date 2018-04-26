@@ -15,6 +15,7 @@ public class CommandSendHelpMessage implements commands.Command {
                 "!greetings? - I'll remind you what you set your greetings message as for new members.\n" +
                 "!kick [@User] - Kicks the user from the server. They can rejoin if they have an invite.\n" +
                 "!ping - Relays bot latency.\n" +
+                "!rng [n] - I will choose a random number from 1 to n. If you don't give me a value, I will choose 6. \n" +
                 "!Unban [User] - Unbans the user from the ban list. Does not invite them to the server.\n").queue();
     }
 

@@ -1,6 +1,6 @@
 package performActions;
 
-import commands.greetingNewMembers.GreetingMessages;
+import commands.greetingNewMembersCommands.GreetingMessages;
 import main.java.Bot;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.*;

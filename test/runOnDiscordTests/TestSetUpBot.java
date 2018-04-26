@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import testResources.CreateClientAccount;
 
-public class TestBot {
+public class TestSetUpBot {
 
     //creates the accounts and tests their connections, if they are bots, and if they have access to the Test Channel ("general").
     private JDA botAccount = Bot.getInstance();

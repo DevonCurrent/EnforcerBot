@@ -1,4 +1,4 @@
-package commands.greetingNewMembers;
+package commands.greetingNewMembersCommands;
 
 import commands.Command;
 import main.java.Bot;
